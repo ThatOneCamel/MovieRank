@@ -1,0 +1,12 @@
+.Row {
+    display: table;
+    /*width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.Col {
+    display: table-cell;
+    /*background-color: red; /*Optional*/
+    border: 2px solid red;
+    overflow: hidden;
+}
