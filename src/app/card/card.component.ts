@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { SelectorBtnComponent } from '../selector-btn/selector-btn.component'
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -9,9 +9,11 @@ export class CardComponent implements OnInit {
 
   @Input() title: string;
   @Input() srcStr: string;
+  @Input() cardID: number;
+  //Selector btn: Selec;
 
   onClick(): void {
-    console.log("Hey you clicked a card")
+    console.log("Hey you clicked card #" + this.cardID)
   }
 
   constructor() { }
