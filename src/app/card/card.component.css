@@ -1,8 +1,45 @@
 .Poster{
     display: block;
-    max-width:400px;
+    /*max-width:400px;
     max-height:500px;
-    width: auto;
+    /*
+    2:3 Ratio, 125px increments
+        OR
+    2:3 Ratio, 150px increments
+    */
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+div {
+    background-color: transparent;
+    border: 3px solid blue;
+    cursor: pointer;
+    outline: none;
+    padding: 0px;
+    width: 300px;
     height: auto;
-    
+
+}
+
+.center {
+    margin: auto;
+}
+
+span {
+    display: block;
+    text-align: center;
+    border: 3px solid green;
+    font-family: 'Open Sans';
+    font-size: 30px;
+    max-width:300px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
