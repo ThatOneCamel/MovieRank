@@ -1,7 +1,6 @@
-<div (click)="onClick()">
+<div>
     <img class="Poster" src={{srcStr}} />
     <h2 class="center">{{title}}</h2>
-
+    <app-selector-btn (click)="onClick()" [movie]="cardID"></app-selector-btn>
 </div>
 
-<app-selector-btn [movie]="cardID"></app-selector-btn>

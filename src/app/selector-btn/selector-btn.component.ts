@@ -8,8 +8,13 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 export class SelectorBtnComponent implements OnInit {
   @Input() movie: number;
   //mobile: boolean;
+  //Web Arrow Directions [Row oriented]
   srcA = "assets/btn_images/arr_left.png";
   srcB = "assets/btn_images/arr_right.png";
+
+  //Mobile Arrow Directions [Col oriented]
+  srcC = "assets/btn_images/arr_up.png";
+  srcD = "assets/btn_images/arr_down.png";
 
   constructor() { }
   onCilck(movieChoice: number): void{
