@@ -77,16 +77,13 @@ export class MovieListService {
     }).indexOf(oldTitle);
 
     movieList.splice(pos, 1);
-
-    let length = movieList.length;
-    console.log(length);
-
-    if(length == 0){
+    
+    if(movieList.length == 0){
       return "";
 
     } else {
-      let rand = Math.floor(Math.random() * movieList.length);
-      let title = movieList[rand].title;
+      //let rand = Math.floor(Math.random() * movieList.length);
+      let title = movieList[0].title;
       //this.movies.splice(rand, 1);
       //console.log("HALF A AFTER POP HAS " + this.halfA.length);
       //console.log("HALF B AFTER POP HAS " + this.halfB.length);
@@ -114,13 +111,16 @@ export class MovieListService {
     }
 
     while(this.halfA.length > this.halfB.length){
-      this.halfB.push(this.halfA[Math.floor(Math.random() * this.halfA.length)])
+      let range = this.halfA.length - this.halfB.length;
+      let rand = Math.floor(Math.random() * (this.halfA.length - range));
+      this.halfB.push(this.halfA[rand]);
+
     }
 
-    /*console.log("Half A: ");
+    console.log("Half A: ");
     console.log(this.halfA);
     console.log("Half B: ");
-    console.log(this.halfB);*/
+    console.log(this.halfB);
 
   }
 }
