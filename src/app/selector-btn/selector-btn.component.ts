@@ -16,6 +16,9 @@ export class SelectorBtnComponent implements OnInit {
   srcC = "assets/btn_images/arr_up.png";
   srcD = "assets/btn_images/arr_down.png";
 
+  //Like Button
+  srcH = "assets/btn_images/heart.svg";
+
   constructor() { }
   onCilck(movieChoice: number): void{
     console.log("Movie number " + movieChoice + " was chosen")
