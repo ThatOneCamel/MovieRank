@@ -9,6 +9,10 @@ import { MOVIES } from './mock-movies';
 export class MovieListService {
   movies: Movie[] = MOVIES;
   preffered: Movie[] = [];
+  mid = Math.ceil(this.movies.length / 2);
+  halfA = [];
+  halfB = []
+
 
   @Output() emitter = new EventEmitter<any>();
 
@@ -20,42 +24,73 @@ export class MovieListService {
     this.emitter.emit("GO");
   }
 
+  checkID(id: number): boolean{
+    return id == 1 ? true : false;
+
+  }
+
   //User can manually add a movie
   add(movie: Movie){
     this.movies.push(movie);
   }
 
-  getRand(): string{
-    return this.movies[Math.floor(Math.random() * this.movies.length)].title;
+  random(movies: Movie[]): Movie {
+    let rand = Math.floor(Math.random() * movies.length);
+    let movie = movies[rand];
+    movies.splice(rand, 1);
+    return movie;
+
   }
 
-  popTitle(oldTitle: string): string {
+  getRandTitle(id: number): string{
+    if(this.checkID(id)){
+      return this.halfA[Math.floor(Math.random() * this.halfA.length)].title;
+    } else {
+      return  this.halfB[Math.floor(Math.random() * this.halfB.length)].title;
+    }
+  }
 
-    let pos = this.movies.map(function(e) {
+  addChosenMovie(title: string, id: number) {
+    if(this.checkID(id)){
+      var movieList = this.halfA;
+    } else {
+      var movieList = this.halfB;
+    }
+
+    let pos = movieList.map(function(e) {
+      return e.title;
+    }).indexOf(title);
+
+    this.preffered.push(movieList[pos]);
+  }
+
+  getNextTitle(oldTitle: string, id: number): string {
+
+    if(this.checkID(id)){
+      var movieList = this.halfA;
+    } else {
+      var movieList = this.halfB;
+    }
+
+    let pos = movieList.map(function(e) {
       return e.title;
     }).indexOf(oldTitle);
 
-    this.preffered.push(this.movies[pos]);
+    movieList.splice(pos, 1);
 
-    this.movies.splice(pos, 1);
-
-    return this.getNextTitle();
-  }
-
-  getNextTitle(): string {
-    let length = this.movies.length;
+    let length = movieList.length;
     console.log(length);
 
     if(length == 0){
-      alert("No more movies to sift through");
-      console.log("You seem to really like:");
-      console.log(this.preffered);
       return "";
 
     } else {
-      let rand = Math.floor(Math.random() * this.movies.length);
-      let title = this.movies[rand].title;
+      let rand = Math.floor(Math.random() * movieList.length);
+      let title = movieList[rand].title;
       //this.movies.splice(rand, 1);
+      //console.log("HALF A AFTER POP HAS " + this.halfA.length);
+      //console.log("HALF B AFTER POP HAS " + this.halfB.length);
+
       return title;
 
     }
@@ -66,5 +101,26 @@ export class MovieListService {
     this.movies = [];
   }
 
-  constructor() { }
+  constructor() {
+    var movies = MOVIES;
+    let length = movies.length;
+    console.log("Mid is " + this.mid)
+    while(this.halfA.length != this.mid){
+      this.halfA.push(this.random(movies));
+    }
+
+    while(this.halfB.length != length - this.mid){
+      this.halfB.push(this.random(movies));
+    }
+
+    while(this.halfA.length > this.halfB.length){
+      this.halfB.push(this.halfA[Math.floor(Math.random() * this.halfA.length)])
+    }
+
+    /*console.log("Half A: ");
+    console.log(this.halfA);
+    console.log("Half B: ");
+    console.log(this.halfB);*/
+
+  }
 }

@@ -16,20 +16,29 @@ export class CardComponent implements OnInit {
 
   onClick(): void {
     console.log("Hey you clicked card #" + this.cardID)
+    this.movieService.addChosenMovie(this.title, this.cardID);
     this.movieService.notify();
+    console.log(this.movieService.halfA)
+    console.log(this.movieService.halfB)
+    if(this.movieService.halfA.length == 0){
+      alert("No more movies to sift through");
+      console.log("You seem to really like:");
+      console.log(this.movieService.preffered);
+    }
+
   }
 
   getMovie(): void {
-    this.title = this.movieService.getRand();
+    this.title = this.movieService.getRandTitle(this.cardID);
   }
 
   updateMovie(): void {
-    this.title = this.movieService.popTitle(this.title);
+    console.log("CARD ID WAS " + this.cardID)
+    this.title = this.movieService.getNextTitle(this.title, this.cardID);
     this.srcStr = "https://ae01.alicdn.com/kf/HTB1F8WgXcnrK1RkHFrdq6xCoFXa8/N-935-Princess-Mononoke-20th-Anniversary-Studio-Ghibli-Hot-Anime1-POSTER-L-W-Canvas-Art-Print.jpg";
   }
 
   constructor(private movieService: MovieListService) {
-    this.getMovie();
     this.listener = movieService.emitter.subscribe( () => this.updateMovie());
 
   }
