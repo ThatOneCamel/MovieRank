@@ -23,6 +23,7 @@ div {
     padding: 0px;
     width: 300px;
     height: auto;
+    text-align: center;
 
 }
 
@@ -32,7 +33,6 @@ div {
 
 h2 {
     display: block;
-    text-align: center;
     border: 3px solid green;
     font-family: 'Open Sans';
     font-size: 25px;
@@ -49,8 +49,7 @@ h2 {
 }
 
 app-selector-btn {
-    display: block;
+    display: inline-block;
     border: 2px solid yellow;
-    text-align: center;  
-
+    padding-top: 5px;
 }
