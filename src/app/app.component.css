@@ -31,6 +31,11 @@ header {
 
 }
 
+#icon {
+    max-height: 50%;
+    
+}
+
 .bg {
     width: 100%;
     height: auto;
@@ -38,7 +43,7 @@ header {
     margin: 0;
     /* Adding an overlay to make image darker and allow readable text*/
     background: #221f1f73;
-    opacity: 0.65;
+    opacity: 0.3;
 }
 
 .app-title {
@@ -63,13 +68,21 @@ header {
 
 .start-btn {
     display: block;
+    margin-top: 10px;
     margin-left: auto !important;
     margin-right: auto !important;
-    text-decoration: none;
-    border-radius: 3px;
-    font-size: 100%;
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    max-width: 400px;
+    height: 45px;
     font-family: "Open Sans";
-    height: 30%;
-    max-height: 60px;
+    font-weight: bold;
     cursor: pointer;
+}
+
+.start-btn:hover {
+    background-color: #221f1f73;
 }
