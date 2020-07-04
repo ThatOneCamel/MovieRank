@@ -18,7 +18,6 @@
 
 div {
     background-color: transparent;
-    border: 3px solid blue;
     outline: none;
     padding: 0px;
     width: 300px;
@@ -53,3 +52,7 @@ app-selector-btn {
     border: 2px solid yellow;
     padding-top: 5px;
 }
+/*div:hover {
+    background: rgba(39,62,84,0.82);
+
+}*/
