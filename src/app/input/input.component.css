@@ -1,0 +1,29 @@
+input {
+    padding: 10px;
+    width: 30%;
+    margin: auto;
+    box-sizing: border-box;
+    border-radius: 8px;
+    resize: none;
+    font-family: "Open Sans";
+    font-size: large;
+}
+
+input:focus {
+    border: 3px solid #555;
+}
+
+/* Input with image ex: 
+input[type=text] {
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+}
+*/
+
+div {
+    margin: auto;
+    text-align: center;
+}
