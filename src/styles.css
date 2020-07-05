@@ -5,3 +5,20 @@ body {
     background-color: #222831;
     margin: 0;
 }
+
+.whiteBtn {
+    display: block;
+    margin-top: 10px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    max-width: 400px;
+    height: 45px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    cursor: pointer;
+}
