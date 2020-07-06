@@ -1,6 +1,7 @@
 <div>
     <input #field (keyup.enter)="onEnter(field.value)" placeholder="Movie title.."[value]="item" (input)="item=field.value">
-    <button class="whiteBtn">Finish</button>
+    <p *ngIf="list.length < 2 && list.length > 0" style="font-style: italic;">Atleast two movies are needed</p>
+    <button class="whiteBtn" *ngIf="list.length > 1" routerLink="/rank">Finish</button>
     <!--
     <ul style="color: white; font-size: large; font-family: Open Sans">
         <li *ngFor="let one of list">

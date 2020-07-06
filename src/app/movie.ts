@@ -1,7 +1,7 @@
 import { Url } from 'url';
 
 export interface Movie {
-    id: number;
+    id?: number;
     title: string;
     year?: number;
     release?: Date;

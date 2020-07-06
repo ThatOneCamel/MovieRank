@@ -1,6 +1,8 @@
 input {
+    display: block;
     padding: 10px;
     width: 30%;
+    height: auto;
     margin: auto;
     box-sizing: border-box;
     border-radius: 8px;
@@ -10,7 +12,8 @@ input {
 }
 
 input:focus {
-    border: 3px solid #555;
+    outline: none;
+    border: 3px solid lightgreen;
 }
 
 /* Input with image ex: 
@@ -26,6 +29,9 @@ input[type=text] {
 div {
     margin: auto;
     text-align: center;
+    color: white;
+    font-size: large;
+    font-family: "Open Sans";
 }
 
 #title {
