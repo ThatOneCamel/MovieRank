@@ -1,4 +1,12 @@
 <div>
-    <input #field (keyup.enter)="onEnter(field.value)" placeholder="Movie title..">
+    <input #field (keyup.enter)="onEnter(field.value)" placeholder="Movie title.."[value]="item" (input)="item=field.value">
     <button class="whiteBtn">Finish</button>
+    <!--
+    <ul style="color: white; font-size: large; font-family: Open Sans">
+        <li *ngFor="let one of list">
+        {{one}} |
+    </ul>
+    -->
+    <h3 id="title" *ngIf="list.length != 0">Added Movies [{{list.length}}]</h3>
+    <p id="listDisplay">{{list.join(" | ")}}</p>
 </div>

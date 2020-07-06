@@ -8,12 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputComponent implements OnInit {
 
   @Input() item: string = '';
+  list: string[] = [];
 
   constructor() { }
 
-  onEnter(obj: any): void {
-    console.log(obj);
-    obj = '';
+  onEnter(val: string): void {
+    this.list.push(val);
+    console.log(this.list);
     this.clear();
   }
 

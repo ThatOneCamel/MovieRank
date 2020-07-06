@@ -27,3 +27,16 @@ div {
     margin: auto;
     text-align: center;
 }
+
+#title {
+    padding-bottom: 0;
+    color: white;
+    font-size: large;
+    font-family: "Open Sans";
+}
+
+#listDisplay {
+    color: white;
+    font-size: large;
+    font-family: "Open Sans";
+}
