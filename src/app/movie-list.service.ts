@@ -8,11 +8,10 @@ import { MOVIES } from './mock-movies';
 })
 export class MovieListService {
   movies: Movie[] = MOVIES;
-  preffered: Movie[] = [];
+  likes: Movie[] = [];
   mid = Math.ceil(this.movies.length / 2);
   halfA = [];
-  halfB = []
-
+  halfB = [];
 
   @Output() emitter = new EventEmitter<any>();
 
@@ -61,7 +60,7 @@ export class MovieListService {
       return e.title;
     }).indexOf(title);
 
-    this.preffered.push(movieList[pos]);
+    this.likes.push(movieList[pos]);
   }
 
   getNextTitle(oldTitle: string, id: number): string {

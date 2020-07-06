@@ -13,6 +13,7 @@
     margin-right: auto;
     margin-left: auto;
     cursor: pointer;
+    border-radius: 8px;
 
 }
 
@@ -32,13 +33,12 @@ div {
 
 h2 {
     display: block;
-    border: 3px solid green;
     font-family: 'Open Sans';
     font-size: 25px;
     max-width:300px;
     height: 60px;
     line-height: 30px;
-    color: white;
+    color: #424242;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -49,7 +49,6 @@ h2 {
 
 app-selector-btn {
     display: inline-block;
-    border: 2px solid yellow;
     padding-top: 5px;
 }
 /*div:hover {

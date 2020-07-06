@@ -20,10 +20,11 @@ export class CardComponent implements OnInit {
     this.movieService.notify();
     console.log(this.movieService.halfA)
     console.log(this.movieService.halfB)
+    
     if(this.movieService.halfA.length == 0){
       alert("No more movies to sift through");
       console.log("You seem to really like:");
-      console.log(this.movieService.preffered);
+      console.log(this.movieService.likes);
     }
 
   }

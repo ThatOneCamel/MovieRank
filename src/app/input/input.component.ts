@@ -11,6 +11,7 @@ export class InputComponent implements OnInit {
 
   @Input() item: string = '';
   list: string[] = [];
+  counter: number = 0;
 
   constructor() { }
 
