@@ -2,6 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Movie } from './movie';
 import { MOVIES } from './mock-movies';
+import { getRatingDelta, getNewRating } from './elo'
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class MovieListService {
   movies: Movie[] = MOVIES;
   likes: Movie[] = [];
   mid = Math.ceil(this.movies.length / 2);
+  winner: number;
   halfA = [];
   halfB = [];
 
@@ -19,8 +21,9 @@ export class MovieListService {
     return of(MOVIES);
   }*/
 
-  notify(): void {
-    this.emitter.emit("GO");
+  notify(winner: number, cardID: number): void {
+    this.emitter.emit();
+    this.winner = winner;
   }
 
   checkID(id: number): boolean{
@@ -64,17 +67,17 @@ export class MovieListService {
   }
 
   getNextTitle(oldTitle: string, id: number): string {
-
+    //Checking which card to update
     if(this.checkID(id)){
       var movieList = this.halfA;
     } else {
       var movieList = this.halfB;
     }
 
+    //Removing old movie out of halfA/halfB array
     let pos = movieList.map(function(e) {
       return e.title;
     }).indexOf(oldTitle);
-
     movieList.splice(pos, 1);
     
     if(movieList.length == 0){

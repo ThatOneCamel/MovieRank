@@ -17,7 +17,7 @@ export class CardComponent implements OnInit {
   onClick(): void {
     console.log("Hey you clicked card #" + this.cardID)
     this.movieService.addChosenMovie(this.title, this.cardID);
-    this.movieService.notify();
+    //this.movieService.notify(this.cardID);
     console.log(this.movieService.halfA)
     console.log(this.movieService.halfB)
     

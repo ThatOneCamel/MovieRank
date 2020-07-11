@@ -6,5 +6,6 @@ export interface Movie {
     year?: number;
     release?: Date;
     poster?: Url;
+    elo?: number;
 
 }
