@@ -9,5 +9,5 @@
     </ul>
     -->
     <h3 id="title" *ngIf="list.length != 0">Added Movies [{{list.length}}]</h3>
-    <p id="listDisplay">{{list.join(" | ")}}</p>
+    <p id="listDisplay">{{displayList()}}</p>
 </div>
