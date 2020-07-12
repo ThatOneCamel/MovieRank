@@ -8,7 +8,7 @@ import { getRatingDelta, getNewRating } from './rating/elo';
   providedIn: 'root'
 })
 export class MovieListService {
-  movies: Movie[] = MOVIES;
+  movies: Movie[] = [];
   likes: Movie[] = [];
   mid = Math.ceil(this.movies.length / 2);
   winner: number;
@@ -30,6 +30,12 @@ export class MovieListService {
   //User can manually add a movie
   add(movie: Movie){
     this.movies.push(movie);
+  }
+
+  setMovies(list: Movie[]): void {
+    this.movies = list;
+    this.halfA = this.movies;
+    this.halfB = MovieManager.splitMovieArr(this.halfA);
   }
 
   getRandTitle(id: number): string{
@@ -79,14 +85,5 @@ export class MovieListService {
     this.movies = [];
   }
 
-  constructor() {
-    this.halfA = this.movies;
-    this.halfB = MovieManager.splitMovieArr(this.halfA);
-
-    console.log("Half A: ");
-    console.log(this.halfA);
-    console.log("Half B: ");
-    console.log(this.halfB);
-
-  }
+  constructor() { }
 }

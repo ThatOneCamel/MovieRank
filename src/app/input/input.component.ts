@@ -14,7 +14,7 @@ export class InputComponent implements OnInit {
   list: Movie[] = [];
   counter: number = 0;
 
-  constructor() { }
+  constructor(private movieService: MovieListService) { }
 
   onEnter(val: string): void {
     this.list.push({id: this.counter, title: val});
@@ -29,6 +29,7 @@ export class InputComponent implements OnInit {
   passList(): void {
     console.log("List contained:");
     console.log(this.list);
+    this.movieService.setMovies(this.list);
   }
 
   clear(): void {
