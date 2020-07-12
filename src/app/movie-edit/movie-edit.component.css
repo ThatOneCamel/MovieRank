@@ -3,22 +3,35 @@ div {
     margin: auto;
 }
 
-#editable {
-    padding: 20px 10px;
-    background-color: white;
-    color: #222831;
-    cursor: move;
+#editBtn {
+    margin-left: 80%;
+    margin-top: 5px;
     font-family: "Open Sans";
     font-size: large;
-    font-weight: bold;
+    font-weight: bolder;
+    color: #19F571;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+
+input {
+    display: block;
+    padding: 10px;
+    width: 100%;
     height: auto;
-    width: 50%;
-    border-radius: 4px;
-    border-bottom: 1px solid #222831;
+    margin: auto;
+    border-radius: 8px;
+    border: 0px;
+    resize: none;
+    font-family: "Open Sans";
+    font-size: large;
+    padding-right: 30px;
 }
 
 img {
-    width: 30px;
+    width: 50px;
+    cursor: pointer;
 }
 
 .list {

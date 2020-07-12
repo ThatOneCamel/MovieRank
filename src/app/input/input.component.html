@@ -16,7 +16,7 @@
         Atleast two movies are needed
     </p>
 
-    <app-movie-edit></app-movie-edit>
+    <app-movie-edit [movies]="list" *ngIf="list.length > 0"></app-movie-edit>
 
     <button class="whiteBtn" *ngIf="list.length > 1" routerLink="/rank" (click)="passList()">Finish</button>
     <!--

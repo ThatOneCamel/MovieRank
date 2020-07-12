@@ -9,7 +9,7 @@ input {
     resize: none;
     font-family: "Open Sans";
     font-size: large;
-    padding-right: 30px;
+    padding-right: 40px;
 }
 
 input:focus {
@@ -44,8 +44,9 @@ div {
 
 #addBtn {
     -webkit-user-drag: none;
-    max-height: 32px;
-    max-width: 32px;
+    max-height: 25px;
+    max-width: 25px;
+    padding-right: 5px;
     cursor: pointer;
     position: absolute;
     display: block;

@@ -1,7 +1,13 @@
 <div class="list" cdkDropList (cdkDropListDropped)="drop($event)">
-    <button class="whiteBtn" style="text-align: right; height: 30px;">Edit</button>
+    <button id="editBtn" (click)="edit = !edit">{{edit ? 'Done' : "Modify"}}</button>
     <div class="editable" *ngFor="let item of movies" cdkDrag>
-        {{item.title}}
-        <img src="../../assets/input_images/paste.svg" />
+        <input #field type="text"
+        [value]="item.title"
+        (keyup.enter)="editTitle(item, field.value)"
+        (change)="editTitle(item, field.value);"/>
+
+        <img *ngIf="edit" (click)="delete(item)" src="../../assets/input_images/delete.svg" />
+    
     </div>
+
 </div>
