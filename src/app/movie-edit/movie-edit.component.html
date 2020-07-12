@@ -1,1 +1,7 @@
-<p>movie-edit works!</p>
+<div class="list" cdkDropList (cdkDropListDropped)="drop($event)">
+    <button class="whiteBtn" style="text-align: right; height: 30px;">Edit</button>
+    <div class="editable" *ngFor="let item of movies" cdkDrag>
+        {{item.title}}
+        <img src="../../assets/input_images/paste.svg" />
+    </div>
+</div>

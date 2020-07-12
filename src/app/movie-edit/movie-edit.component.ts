@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from '../movie';
+import { MOVIES } from '../mock-movies';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-movie-edit',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieEditComponent implements OnInit {
 
-  constructor() { }
+  movies: Movie[] = [];
+
+  constructor() { this.movies = MOVIES}
 
   ngOnInit(): void {
+
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
 
 }
