@@ -8,6 +8,7 @@ import { SelectorBtnComponent } from './selector-btn/selector-btn.component';
 import { HeaderComponent } from './header/header.component';
 import { InputComponent } from './input/input.component';
 import { RankViewComponent } from './rank-view/rank-view.component';
+import { MovieEditComponent } from './movie-edit/movie-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RankViewComponent } from './rank-view/rank-view.component';
     SelectorBtnComponent,
     HeaderComponent,
     InputComponent,
-    RankViewComponent
+    RankViewComponent,
+    MovieEditComponent
   ],
   imports: [
     BrowserModule,
