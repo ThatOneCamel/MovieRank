@@ -16,10 +16,23 @@ export class InputComponent implements OnInit {
 
   constructor(private movieService: MovieListService) { }
 
-  onEnter(val: string): void {
+  insert(val: string){
     this.list.push({id: this.counter, title: val});
     this.counter++;
+  }
+
+  onEnter(val: string): void {
+    this.insert(val);
     this.clear();
+  }
+
+  onPaste(event: ClipboardEvent): void {
+    let pasted = event.clipboardData.getData('text').split(/\r?\n/);
+    pasted.forEach(title => { this.insert(title); });
+    //This doesn't let the pasted text appear in the input field
+    //event.preventDefault();
+    event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+    //this.clear();
   }
 
   displayList(): string {
