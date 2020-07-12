@@ -1,8 +1,8 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { Movie } from './movie';
 import { MOVIES } from './mock-movies';
-import { getRatingDelta, getNewRating } from './elo'
+import * as MovieManager from './rating/movie-manager';
+import { getRatingDelta, getNewRating } from './rating/elo';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,7 @@ export class MovieListService {
 
   @Output() emitter = new EventEmitter<any>();
 
-  /*updateMovies(): Observable<Movie[]>{
-    return of(MOVIES);
-  }*/
-
-  notify(winner: number, cardID: number): void {
+  notify(winner: number): void {
     this.emitter.emit();
     this.winner = winner;
   }
@@ -34,14 +30,6 @@ export class MovieListService {
   //User can manually add a movie
   add(movie: Movie){
     this.movies.push(movie);
-  }
-
-  random(movies: Movie[]): Movie {
-    let rand = Math.floor(Math.random() * movies.length);
-    let movie = movies[rand];
-    movies.splice(rand, 1);
-    return movie;
-
   }
 
   getRandTitle(id: number): string{
@@ -59,9 +47,7 @@ export class MovieListService {
       var movieList = this.halfB;
     }
 
-    let pos = movieList.map(function(e) {
-      return e.title;
-    }).indexOf(title);
+    let pos = MovieManager.getIndexOfTitle(movieList, title);
 
     this.likes.push(movieList[pos]);
   }
@@ -75,21 +61,14 @@ export class MovieListService {
     }
 
     //Removing old movie out of halfA/halfB array
-    let pos = movieList.map(function(e) {
-      return e.title;
-    }).indexOf(oldTitle);
+    let pos = MovieManager.getIndexOfTitle(movieList, oldTitle);
     movieList.splice(pos, 1);
     
     if(movieList.length == 0){
-      return "";
+      return "Emptiness";
 
     } else {
-      //let rand = Math.floor(Math.random() * movieList.length);
       let title = movieList[0].title;
-      //this.movies.splice(rand, 1);
-      //console.log("HALF A AFTER POP HAS " + this.halfA.length);
-      //console.log("HALF B AFTER POP HAS " + this.halfB.length);
-
       return title;
 
     }
@@ -101,23 +80,8 @@ export class MovieListService {
   }
 
   constructor() {
-    var movies = MOVIES;
-    let length = movies.length;
-    console.log("Mid is " + this.mid)
-    while(this.halfA.length != this.mid){
-      this.halfA.push(this.random(movies));
-    }
-
-    while(this.halfB.length != length - this.mid){
-      this.halfB.push(this.random(movies));
-    }
-
-    while(this.halfA.length > this.halfB.length){
-      let range = this.halfA.length - this.halfB.length;
-      let rand = Math.floor(Math.random() * (this.halfA.length - range));
-      this.halfB.push(this.halfA[rand]);
-
-    }
+    this.halfA = this.movies;
+    this.halfB = MovieManager.splitMovieArr(this.halfA);
 
     console.log("Half A: ");
     console.log(this.halfA);
