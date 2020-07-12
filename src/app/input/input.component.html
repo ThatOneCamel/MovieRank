@@ -1,14 +1,21 @@
 <div>
-    <input #field (keyup.enter)="onEnter(field.value)"
-    placeholder="Movie title.."
-    [value]="item"
-    (paste)="onPaste($event)"
-    (input)="item=field.value" >
+    <div id="inDiv">
+        <img id="addBtn" (click)="onEnter(field.value)" src="../../assets/input_images/add.svg"/>
+        
+        <input #field
+        placeholder="Movie title.."
+        (keyup.enter)="onEnter(field.value)"
+        [value]="item"
+        (paste)="onPaste($event)"
+        (input)="item=field.value" >
+    </div>
+    <p style="font-size: small;">You can also paste a list of movies into the field above</p>
 
     <p *ngIf="list.length < 2 && list.length > 0" 
         style="font-style: italic;" >
         Atleast two movies are needed
     </p>
+
     <button class="whiteBtn" *ngIf="list.length > 1" routerLink="/rank" (click)="passList()">Finish</button>
     <!--
     <ul style="color: white; font-size: large; font-family: Open Sans">

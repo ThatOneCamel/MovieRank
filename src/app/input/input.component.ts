@@ -22,8 +22,12 @@ export class InputComponent implements OnInit {
   }
 
   onEnter(val: string): void {
-    this.insert(val);
-    this.clear();
+    //Checking if the string only has whitespace/is empty
+    if(val.replace(/\s/g, '').length){
+      this.insert(val);
+      this.clear();
+    }
+
   }
 
   onPaste(event: ClipboardEvent): void {

@@ -1,7 +1,7 @@
 input {
     display: block;
     padding: 10px;
-    width: 30%;
+    width: 100%;
     height: auto;
     margin: auto;
     box-sizing: border-box;
@@ -9,6 +9,7 @@ input {
     resize: none;
     font-family: "Open Sans";
     font-size: large;
+    padding-right: 30px;
 }
 
 input:focus {
@@ -32,6 +33,28 @@ div {
     color: white;
     font-size: large;
     font-family: "Open Sans";
+}
+
+#inDiv {
+    width: 30%;
+    position: relative;
+    overflow: auto;
+
+}
+
+#addBtn {
+    -webkit-user-drag: none;
+    max-height: 32px;
+    max-width: 32px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    margin: auto;
+    top: 50%;
+    bottom: 50%;
+
+    right: 5px;
+    fill: greenyellow;
 }
 
 #title {
