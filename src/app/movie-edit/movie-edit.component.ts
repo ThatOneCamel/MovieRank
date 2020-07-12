@@ -22,6 +22,8 @@ export class MovieEditComponent implements OnInit {
   editTitle(movie: Movie, val: string){
     if(val == ""){
       this.delete(movie);
+    } else {
+      movie.title = val;
     }
 
   }
