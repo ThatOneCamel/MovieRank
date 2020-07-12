@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { InputComponent } from './input/input.component';
 import { RankViewComponent } from './rank-view/rank-view.component';
 import { MovieEditComponent } from './movie-edit/movie-edit.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { MovieEditComponent } from './movie-edit/movie-edit.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HammerModule
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
