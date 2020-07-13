@@ -57,6 +57,7 @@ export class MovieListService {
   acceptDefeat(id: number, loser: Movie){
     MovieManager.adjustElo(this.winningMovie, loser);
     console.log(this.movies);
+    MovieManager.sortByElo(this.movies);
   }
 
   clear(){

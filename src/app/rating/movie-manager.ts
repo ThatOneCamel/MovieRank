@@ -34,11 +34,16 @@ export function splitMovieArr(movies: Movie[]): Movie[] {
     return randomArr;
 }
 
+export function sortByElo(movies: Movie[]): Movie[] {
+    //Sorting in descending order [ > yields ascending ]
+    return movies.sort( (x, y) => (x.elo < y.elo) ? 1 : -1);
+}
+
 export function adjustElo(winner: Movie, loser: Movie): void{
     winner.elo = Elo.getNewRating(winner.elo, loser.elo, 1);
-    console.log("Winner should have " + winner.elo) 
+    console.log("Winner should have " + winner.elo);
     loser.elo = Elo.getNewRating(loser.elo, winner.elo, 0);
-    console.log("Loser should have " + loser.elo) 
+    console.log("Loser should have " + loser.elo);
 
 }
 
