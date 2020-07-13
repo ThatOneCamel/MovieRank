@@ -51,6 +51,7 @@ header::before {
 #icon {
     height: 256px;
     max-width: 50%;
+    padding-top: 10%;
     margin: auto;
     
 }
