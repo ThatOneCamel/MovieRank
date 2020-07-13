@@ -10,21 +10,16 @@ import { getRatingDelta, getNewRating } from './rating/elo';
 export class MovieListService {
   movies: Movie[] = [];
   likes: Movie[] = [];
-  mid = Math.ceil(this.movies.length / 2);
   winner: number;
-  halfA = [];
-  halfB = [];
+  winningMovie: Movie;
 
   @Output() emitter = new EventEmitter<any>();
 
-  notify(winner: number): void {
-    this.emitter.emit();
+  //Sets winning movie and calls updateMovie() in Card-Component
+  notify(winner: number, movie: Movie): void {
     this.winner = winner;
-  }
-
-  checkID(id: number): boolean{
-    return id == 1 ? true : false;
-
+    this.winningMovie = movie;
+    this.emitter.emit();
   }
 
   //User can manually add a movie
@@ -34,51 +29,34 @@ export class MovieListService {
 
   setMovies(list: Movie[]): void {
     this.movies = list;
-    this.halfA = this.movies;
-    this.halfB = MovieManager.splitMovieArr(this.halfA);
+    MovieManager.initElo(this.movies);
+
   }
 
-  getRandTitle(id: number): string{
-    if(this.checkID(id)){
-      return this.halfA[Math.floor(Math.random() * this.halfA.length)].title;
-    } else {
-      return  this.halfB[Math.floor(Math.random() * this.halfB.length)].title;
-    }
+  getRandMovie(): Movie{
+      return this.movies[Math.floor(Math.random() * this.movies.length)];
   }
 
-  addChosenMovie(title: string, id: number) {
-    if(this.checkID(id)){
-      var movieList = this.halfA;
-    } else {
-      var movieList = this.halfB;
-    }
-
-    let pos = MovieManager.getIndexOfTitle(movieList, title);
-
-    this.likes.push(movieList[pos]);
+  //Adds movies to 'likes' list
+  addToLikes(title: string, id: number) {
+    let pos = MovieManager.getIndexOfTitle(this.movies, title);
+    this.likes.push(this.movies[pos]);
   }
 
-  getNextTitle(oldTitle: string, id: number): string {
-    //Checking which card to update
-    if(this.checkID(id)){
-      var movieList = this.halfA;
-    } else {
-      var movieList = this.halfB;
-    }
-
-    //Removing old movie out of halfA/halfB array
-    let pos = MovieManager.getIndexOfTitle(movieList, oldTitle);
-    movieList.splice(pos, 1);
-    
-    if(movieList.length == 0){
-      return "Emptiness";
+  getNextTitle(oldTitle: Movie, id: number): Movie {    
+    if(this.movies.length == 0){
+      return {id: 0, title: "Emptiness"};
 
     } else {
-      let title = movieList[0].title;
-      return title;
+      return this.getRandMovie();
 
     }
 
+  }
+
+  acceptDefeat(id: number, loser: Movie){
+    MovieManager.adjustElo(this.winningMovie, loser);
+    console.log(this.movies);
   }
 
   clear(){

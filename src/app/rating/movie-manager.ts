@@ -1,4 +1,5 @@
 import { Movie } from '../movie';
+import * as Elo from './elo';
 
 export function getMovieTitles(movies: Movie[]): string[] {
     return movies.map(m => { return m.title; });
@@ -31,4 +32,18 @@ export function splitMovieArr(movies: Movie[]): Movie[] {
     }
 
     return randomArr;
+}
+
+export function adjustElo(winner: Movie, loser: Movie): void{
+    winner.elo = Elo.getNewRating(winner.elo, loser.elo, 1);
+    console.log("Winner should have " + winner.elo) 
+    loser.elo = Elo.getNewRating(loser.elo, winner.elo, 0);
+    console.log("Loser should have " + loser.elo) 
+
+}
+
+export function initElo(movies: Movie[]){
+    movies.forEach(movie => {
+        movie.elo = 500;
+    })
 }

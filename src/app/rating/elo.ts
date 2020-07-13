@@ -1,3 +1,7 @@
+// 1 = Win
+// 0 = Loss
+// 0.5 = Draw
+
 export function getRatingDelta(myRating: number, opponentRating: number,
     myGameResult: number) {
     if ([0, 0.5, 1].indexOf(myGameResult) === -1) {

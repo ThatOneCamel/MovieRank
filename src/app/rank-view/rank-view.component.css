@@ -1,14 +1,16 @@
 .Row {
-    display: table;
-    /*width: 100%; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    border-spacing: 10px; /*Optional*/
+    display: block;
+    width: 80%;
+    min-width: 320px;
     background-color: #f6f8fb;
-    border-color: white;
+    border: 2px solid lightgreen;
     border-radius: 8px;
+    text-align: center;
 
 }
 .Col {
-    display: table-cell;
-    overflow-y: scroll;
+    margin: auto;
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 10px;
 }
