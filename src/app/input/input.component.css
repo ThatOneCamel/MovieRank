@@ -36,7 +36,8 @@ div {
 }
 
 #inDiv {
-    width: 30%;
+    width: 400px;
+    max-width: 80%;
     position: relative;
     overflow: auto;
 

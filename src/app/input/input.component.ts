@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MovieListService } from '../movie-list.service';
 import { Movie } from '../movie';
 import * as MovieManager from '../rating/movie-manager';
+import { MOVIES } from '../mock-movies';
 
 @Component({
   selector: 'app-input',
@@ -11,7 +12,7 @@ import * as MovieManager from '../rating/movie-manager';
 export class InputComponent implements OnInit {
 
   @Input() item: string = '';
-  list: Movie[] = [];
+  list: Movie[] = MOVIES;
   counter: number = 0;
 
   constructor(private movieService: MovieListService) { }

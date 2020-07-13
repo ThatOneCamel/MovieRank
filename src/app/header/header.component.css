@@ -14,14 +14,32 @@
 header {
     position: relative;
     padding: 0;
+    padding-top: 100px;
+    padding-bottom: 100px;
     margin: 0;
-    overflow: hidden;
+    height: auto;
+    max-height: 100%;
+    
+}
+
+header::before {
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    z-index:-1;
+    opacity:0.3;
+    background: url("../../assets/bg_images/bg_bw.jpg");
+    object-fit: contain;
+    background-position: 50% 50%;
+    background-size: cover;
 }
 
 .header-overlay {
     margin: auto;
-    position: absolute;
-    top: 30%;
+    position: relative;
     width: 100%;
     height: 60%;
     text-align: center;
@@ -31,11 +49,15 @@ header {
 }
 
 #icon {
-    max-height: 50%;
+    height: 256px;
+    max-width: 50%;
+    margin: auto;
     
 }
 
 .bg {
+    position: absolute;
+    object-fit: fill;
     width: 100%;
     height: auto;
     padding: 0;
@@ -48,7 +70,9 @@ header {
 .app-title {
     display: block;
     font-size: 50px;
-    font-size: 4.23076923rem !important;
+    font-size: 3.23076923rem !important;
+    max-height: 90%;
+    padding-bottom: 10px;
     margin: auto;
     font-family: "Open Sans";
     font-weight: bolder;
@@ -59,6 +83,7 @@ header {
     display: block;
     font-size: 50px;
     font-size: 1.23076923rem !important;
+    padding-bottom: 10px;
     margin: auto;
     font-family: "Open Sans";
     font-weight: bolder;

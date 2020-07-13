@@ -3,8 +3,31 @@ div {
     margin: auto;
 }
 
+img {
+    width: 35px;
+    cursor: pointer;
+}
+
+.list {
+    border: solid 1px #ccc;
+    background-color: white;
+    padding-top: 35px;
+    width: 550px;
+    max-width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+
+}
+
 #editBtn {
-    margin-left: 80%;
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    flex-basis: 100%;
+    display: block;
+    margin-bottom: 0;
+    padding-bottom: 0;
     margin-top: 5px;
     font-family: "Open Sans";
     font-size: large;
@@ -13,34 +36,6 @@ div {
     background-color: transparent;
     border: 0px;
     cursor: pointer;
-}
-
-input {
-    display: block;
-    padding: 10px;
-    width: 100%;
-    height: auto;
-    margin: auto;
-    border-radius: 8px;
-    border: 0px;
-    resize: none;
-    font-family: "Open Sans";
-    font-size: large;
-    padding-right: 30px;
-}
-
-img {
-    width: 50px;
-    cursor: pointer;
-}
-
-.list {
-    border: solid 1px #ccc;
-    background-color: white;
-    width: 50%;
-    border-radius: 8px;
-    overflow: hidden;
-
 }
 
 .editable {
@@ -58,6 +53,19 @@ img {
     box-sizing: border-box;
     cursor: move;
     background: white;
+}
+
+input {
+    display: block;
+    padding: 10px;
+    width: 80%;
+    height: auto;
+    border-radius: 8px;
+    border: 0px;
+    resize: none;
+    font-family: "Open Sans";
+    font-size: large;
+    padding-right: 30px;
 }
 /*Material CDK Reorderable List*/
 .cdk-drag-preview {

@@ -1,74 +1,20 @@
-header {
-    position: relative;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-}
-
-.header-overlay {
+footer {
+    font-family: "Open Sans";
+    color: white;
     margin: auto;
-    position: absolute;
-    top: 30%;
-    width: 100%;
-    height: 60%;
+    font-family: Open Sans;
     text-align: center;
-    overflow: visible;
-
-
 }
 
-#icon {
-    max-height: 50%;
-    
-}
-
-.bg {
-    width: 100%;
-    height: auto;
+#attribution {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 5px;
     padding: 0;
-    margin: 0;
-    /* Adding an overlay to make image darker and allow readable text*/
-    background: #221f1f73;
-    opacity: 0.3;
 }
 
-.app-title {
-    display: block;
-    font-size: 50px;
-    font-size: 4.23076923rem !important;
-    margin: auto;
-    font-family: "Open Sans";
-    font-weight: bolder;
-    color: white;
-}
-
-.app-body {
-    display: block;
-    font-size: 50px;
-    font-size: 1.23076923rem !important;
-    margin: auto;
-    font-family: "Open Sans";
-    font-weight: bolder;
-    color: white;
-}
-
-.start-btn {
-    display: block;
-    margin-top: 10px;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    border-radius: 8px;
-    border: 2px solid white;
-    background-color: transparent;
-    color: white;
-    font-size: 20px;
-    max-width: 400px;
-    height: 45px;
-    font-family: "Open Sans";
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.start-btn:hover {
-    background-color: #221f1f73;
+#attribution-img {
+    height: 15px;
+    display: inline-block;
+    padding-left: 10px;
 }
