@@ -12,9 +12,9 @@ export class RankViewComponent implements OnInit {
 
   constructor(private router: Router, private movieService: MovieListService) {
     if(this.movieService.movies.length == 0){
-      //this.movieService.setMovies(MOVIES); CAN BE USED TO BYPASS REROUTE FOR TESTING
+      this.movieService.setMovies(MOVIES);
       //alert('No movies were given, redirecting.');
-      router.navigate(['makelist']);
+      //router.navigate(['makelist']);
     }
   }
 

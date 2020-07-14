@@ -44,6 +44,8 @@ export function adjustElo(winner: Movie, loser: Movie): void{
     console.log("Winner should have " + winner.elo);
     loser.elo = Elo.getNewRating(loser.elo, winner.elo, 0);
     console.log("Loser should have " + loser.elo);
+    console.log(winner.title + " is Ranked.");
+    winner.ranked = true;
 
 }
 
@@ -51,4 +53,21 @@ export function initElo(movies: Movie[]){
     movies.forEach(movie => {
         movie.elo = 500;
     })
+}
+
+export function allRanked(movies: Movie[]): boolean{
+    var val = true;
+
+    movies.forEach(movie => {
+        if(movie.ranked != true){
+            val = false;
+        }
+    });
+
+    return val;
+}
+
+export function exposeUnranked(movies: Movie[]): Movie{
+    let pos = movies.map(m => { return m.ranked; }).indexOf(undefined);
+    return movies[pos];
 }
