@@ -5,7 +5,7 @@ export interface Movie {
     title: string;
     year?: number;
     release?: Date;
-    poster?: Url;
+    poster?: string;
     elo?: number;
 
 }

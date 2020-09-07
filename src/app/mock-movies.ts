@@ -26,3 +26,17 @@ export const MOVIES: Movie[] = [
 
 ];
 
+export const MOVIES2: Movie[] = [
+    { id: 10, title: "Parasite", poster: "./assets/posters/poster0.jpg"},
+    { id: 11, title: "Spirited Away", poster: "./assets/posters/poster1.jpg" },
+    { id: 12, title: "Princess Mononoke", poster: "./assets/posters/poster2.jpg" },
+    { id: 13, title: "Howl's Moving Castle", poster: "./assets/posters/poster3.jpg" },
+    { id: 14, title: "Your Name", poster: "./assets/posters/poster4.png" },
+    { id: 15, title: "The Wolf Children: Ame and Yuki", poster: "./assets/posters/poster5.jpg" },
+    { id: 16, title: "Baby Driver", poster: "./assets/posters/poster6.jpg" },
+    { id: 17, title: "Pulp Fiction", poster: "./assets/posters/poster7.png" },
+    { id: 18, title: "Alien", poster: "./assets/posters/poster8.jpg" },
+    { id: 19, title: "Shaun of the Dead", poster: "./assets/posters/poster9.jpg" },
+];
+
+
