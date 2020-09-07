@@ -54,6 +54,10 @@ export class MovieListService {
 
   }
 
+  getMovies(): Movie[] {
+    return this.movies;
+  }
+
   acceptDefeat(id: number, loser: Movie){
     MovieManager.adjustElo(this.winningMovie, loser);
     console.log(this.movies);

@@ -3,7 +3,7 @@
     <app-card class="Col" cardID=2 title="The Wolf Children: Ame and Yuki" srcStr="https://i.pinimg.com/originals/00/c7/17/00c717b5417ec2f59dde1d55dd99d1c6.png"></app-card>
 </div>
 
-<div #rowLayout cdkDropListGroup>
+<div #rowLayout cdkDropListGroup style="margin-top: 50px;">
     <!-- Based on the width of template reference #rowLayout' and item box width,
          columns per row can be calculated and a items table matrix is initialized-->
     <div
@@ -21,7 +21,7 @@
 
         <div fxLayoutAlign="center center" class="item-box">
             <div (click)="testClick(movie.title)">
-                <img class="image" src={{movie.poster}}>
+                <img class="image" [src]="movie.poster != null ? movie.poster : placeholderImg.poster">
                 <h2>[{{getMovieIndex(movie.title)}}] {{movie.title}}</h2>
             </div>
         </div>

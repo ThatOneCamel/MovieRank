@@ -13,17 +13,23 @@ import { MOVIES, MOVIES2 } from '../mock-movies';
 })
 export class RankViewComponent implements OnInit {
 
+  placeholderImg: Movie = {title: "none", poster: "assets/posters/posterNone.png" }
+
+  //movies: Movie[] = MOVIES2;
+  movies: Movie[] = [];
+
   constructor(private router: Router, private movieService: MovieListService) {
     //If page is loaded and there aren't any movies to rank,  go back to makelist
     if(this.movieService.movies.length < 1){
-      this.movieService.setMovies(MOVIES); //CAN BE USED TO BYPASS REROUTE FOR TESTING
+      this.movieService.setMovies(MOVIES2); //CAN BE USED TO BYPASS REROUTE FOR TESTING
       //alert('No movies were given, redirecting.');
       //router.navigate(['makelist']);
     }
+    this.movies = this.movieService.getMovies();
+
 
   }
 
-  movies: Movie[] = MOVIES2;
   //items: Array<number> = Array.from({ length: 21 }, (v, k) => k + 1);
   // two dimensional table matrix representing view model
   movieTable: Array<Movie[]>;
