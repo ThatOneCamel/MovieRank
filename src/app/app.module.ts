@@ -10,6 +10,8 @@ import { InputComponent } from './input/input.component';
 import { RankViewComponent } from './rank-view/rank-view.component';
 import { MovieEditComponent } from './movie-edit/movie-edit.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DragDropModule
+    DragDropModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
