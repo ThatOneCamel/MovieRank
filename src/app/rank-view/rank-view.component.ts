@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MovieListService } from '../movie-list.service';
-import { MOVIES } from '../mock-movies';
+import { Movie } from '../movie';
+import { getIndexOfTitle } from '../rating/movie-manager';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { MOVIES, MOVIES2 } from '../mock-movies';
 
 @Component({
   selector: 'app-rank-view',
@@ -11,11 +14,92 @@ import { MOVIES } from '../mock-movies';
 export class RankViewComponent implements OnInit {
 
   constructor(private router: Router, private movieService: MovieListService) {
-    if(this.movieService.movies.length == 0){
-      //this.movieService.setMovies(MOVIES); CAN BE USED TO BYPASS REROUTE FOR TESTING
+    //If page is loaded and there aren't any movies to rank,  go back to makelist
+    if(this.movieService.movies.length < 1){
+      this.movieService.setMovies(MOVIES); //CAN BE USED TO BYPASS REROUTE FOR TESTING
       //alert('No movies were given, redirecting.');
-      router.navigate(['makelist']);
+      //router.navigate(['makelist']);
     }
+
+  }
+
+  movies: Movie[] = MOVIES2;
+  //items: Array<number> = Array.from({ length: 21 }, (v, k) => k + 1);
+  // two dimensional table matrix representing view model
+  movieTable: Array<Movie[]>;
+
+  // fix column width as defined in CSS (150px + 5px margin)
+  boxWidth = 150;
+  // calculated based on dynamic row width
+  columnSize: number;
+
+  getItemsTable(rowLayout: Element): Movie[][] {
+    // calculate column size per row
+    const { width } = rowLayout.getBoundingClientRect();
+    console.log("Width = " + width);
+    const columnSize = Math.round(width / this.boxWidth) - 1;
+
+    // view has been resized? => update table with new column size
+    if (columnSize != this.columnSize) {
+      this.columnSize = columnSize;
+      this.initTable();
+    }
+    return this.movieTable;
+  }
+
+  initTable() {
+    // create table rows based on input list
+    // example: [1,2,3,4,5,6] => [ [1,2,3], [4,5,6] ]
+    this.movieTable = this.movies
+      .filter((_, outerIndex) => outerIndex % this.columnSize == 0) // create outter list of rows
+      .map((
+        _,
+        rowIndex // fill each row from...
+      ) =>
+        this.movies.slice(
+          rowIndex * this.columnSize, // ... row start and
+          rowIndex * this.columnSize + this.columnSize // ...row end
+        )
+      );
+  }
+
+  reorderDroppedItem(event: CdkDragDrop<number[]>) {
+    // same row/container? => move item in same row
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      // different rows? => transfer item from one to another list
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+
+    // update items after drop: flatten matrix into list
+    // example: [ [1,2,3], [4,5,6] ] => [1,2,3,4,5,6]
+    this.movies = this.movieTable.reduce(
+      (previous, current) => previous.concat(current),
+      []
+    );
+
+    // re-initialize table - makes sure each row has same numbers of entries
+    // example: [ [1,2], [3,4,5,6] ] => [ [1,2,3], [4,5,6] ]
+    this.initTable();
+    console.log(this.movies);
+  }
+
+  getMovieIndex(title: string): number{
+    return getIndexOfTitle(this.movies, title) + 1;
+  }
+
+  testClick(title: string) {
+    alert("Hey you clicked " + title);
   }
 
   ngOnInit(): void {
