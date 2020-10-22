@@ -9,6 +9,7 @@ import { getRatingDelta, getNewRating } from './rating/elo';
 })
 export class MovieListService {
   movies: Movie[] = [];
+  ranked: Movie[] = [];
   likes: Movie[] = [];
   winner: number;
   winningMovie: Movie;

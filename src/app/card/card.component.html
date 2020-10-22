@@ -1,5 +1,5 @@
 <div>
-    <img class="Poster" src={{srcStr}} />
+    <img class="Poster" [src]="movie.poster != null ? movie.poster : placeholderImg" />
     <h2 class="center">{{title}} {{elo}} </h2>
     <app-selector-btn (click)="onClick()" [movie]="cardID"></app-selector-btn>
 </div>

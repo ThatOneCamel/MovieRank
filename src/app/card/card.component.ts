@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../movie';
+import { noPosterImg } from '../mock-movies';
 import { MovieListService } from '../movie-list.service';
 import { Subscription } from 'rxjs';
 @Component({
@@ -12,6 +13,7 @@ export class CardComponent implements OnInit {
   @Input() title: string;
   @Input() srcStr: string;
   @Input() cardID: number;
+  placeholderImg = noPosterImg;
   movie: Movie;
   elo: number;
   listener: Subscription;

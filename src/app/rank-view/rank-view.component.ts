@@ -4,7 +4,7 @@ import { MovieListService } from '../movie-list.service';
 import { Movie } from '../movie';
 import { getIndexOfTitle } from '../rating/movie-manager';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { MOVIES, MOVIES2 } from '../mock-movies';
+import { MOVIES, MOVIES2, noPosterImg } from '../mock-movies';
 
 @Component({
   selector: 'app-rank-view',
@@ -13,7 +13,7 @@ import { MOVIES, MOVIES2 } from '../mock-movies';
 })
 export class RankViewComponent implements OnInit {
 
-  placeholderImg: Movie = {title: "none", poster: "assets/posters/posterNone.png" }
+  placeholderImg = noPosterImg;
 
   //movies: Movie[] = MOVIES2;
   movies: Movie[] = [];
@@ -26,6 +26,8 @@ export class RankViewComponent implements OnInit {
       //router.navigate(['makelist']);
     }
     this.movies = this.movieService.getMovies();
+
+    //this.movieService
 
 
   }

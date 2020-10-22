@@ -1,5 +1,7 @@
 import { Movie } from './movie';
 
+export const noPosterImg = "assets/posters/posterNone.png"
+
 export const MOVIES: Movie[] = [
     { id: 10, title: "Cabin in the Woods"},
     { id: 11, title: "Back to the Future" },

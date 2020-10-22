@@ -21,7 +21,7 @@
 
         <div fxLayoutAlign="center center" class="item-box">
             <div (click)="testClick(movie.title)">
-                <img class="image" [src]="movie.poster != null ? movie.poster : placeholderImg.poster">
+                <img class="image" [src]="movie.poster != null ? movie.poster : placeholderImg">
                 <h2>[{{getMovieIndex(movie.title)}}] {{movie.title}}</h2>
             </div>
         </div>

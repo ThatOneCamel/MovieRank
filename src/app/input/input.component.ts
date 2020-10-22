@@ -3,6 +3,7 @@ import { MovieListService } from '../movie-list.service';
 import { Movie } from '../movie';
 import * as MovieManager from '../rating/movie-manager';
 import { MOVIES } from '../mock-movies';
+import * as retreive from '../rating/getRemoteMovies.js';
 
 @Component({
   selector: 'app-input',
@@ -12,7 +13,7 @@ import { MOVIES } from '../mock-movies';
 export class InputComponent implements OnInit {
 
   @Input() item: string = '';
-  list: Movie[] = MOVIES;
+  list: Movie[] = [];
   counter: number = 0;
 
   constructor(private movieService: MovieListService) { }
@@ -31,6 +32,9 @@ export class InputComponent implements OnInit {
 
   }
 
+  test(): void {
+    console.log("TEST SUCCESS");
+  }
   onPaste(event: ClipboardEvent): void {
     let pasted = event.clipboardData.getData('text').split(/\r?\n/);
     pasted.forEach(title => { this.insert(title); });
@@ -38,6 +42,12 @@ export class InputComponent implements OnInit {
     //event.preventDefault();
     event.preventDefault ? event.preventDefault() : (event.returnValue = false);
     //this.clear();
+  }
+
+  parseRemoteList(): void {
+    console.log("CALLING PARSE REMOTE");
+    let temp = retreive.getList();
+    console.log(temp);
   }
 
   displayList(): string {
@@ -59,6 +69,7 @@ export class InputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //this.parseRemoteList();
   }
 
 }
