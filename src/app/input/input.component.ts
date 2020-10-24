@@ -14,6 +14,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class InputComponent implements OnInit {
 
   @Input() item: string = '';
+  apiURL: string = 'https://boxflask-app.herokuapp.com/list'
   list: Movie[] = [];
   counter: number = 0;
 
@@ -33,11 +34,11 @@ export class InputComponent implements OnInit {
 
   }
 
-  async test(){
-    let myVar = "https://letterboxd.com/thatmovieguy21/list/tommys-movie-collection/"
+  async getRemoteList(url: string){
+    //let myVar = "https://letterboxd.com/thatmovieguy21/list/tommys-movie-collection/"
     //let options = { params: new HttpParams({fromString: ""})}
-    let req = await this.httpClient.post<[]>('https://boxflask-app.herokuapp.com/list', {
-      "listurl" : myVar,
+    let req = await this.httpClient.post<[]>(this.apiURL, {
+      "listurl" : url,
     });
     
     req.subscribe(resp => {
@@ -51,11 +52,27 @@ export class InputComponent implements OnInit {
     console.log("TEST SUCCESS!");
   }
   onPaste(event: ClipboardEvent): void {
-    let pasted = event.clipboardData.getData('text').split(/\r?\n/);
-    pasted.forEach(title => { this.insert(title); });
+    var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
+    var clipboardText = event.clipboardData.getData('text');
+
+    console.log(urlRegex.test(clipboardText));
+    console.log("ONPASTE CALLED")
+
+    if(urlRegex.test(event.clipboardData.getData('text')) && clipboardText.includes('letterboxd')){
+      console.log("Link detected.")
+      //alert("Stay patient, your list is being created.")
+      this.getRemoteList(clipboardText);
+
+    } else {
+      let pasted = clipboardText.split(/\r?\n/);
+      pasted.forEach(title => { this.insert(title); });
+
+    }
+
     //This doesn't let the pasted text appear in the input field
     //event.preventDefault();
     event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+
     //this.clear();
   }
 
