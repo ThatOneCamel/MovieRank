@@ -9,6 +9,7 @@ import { getRatingDelta, getNewRating } from './rating/elo';
 })
 export class MovieListService {
   movies: Movie[] = [];
+  unranked: Movie[] =[];
   ranked: Movie[] = [];
   likes: Movie[] = [];
   winner: number;
@@ -30,6 +31,7 @@ export class MovieListService {
 
   setMovies(list: Movie[]): void {
     this.movies = list;
+    this.movies.forEach(val => this.unranked.push(Object.assign({}, val)));
     MovieManager.initElo(this.movies);
 
   }
@@ -44,15 +46,16 @@ export class MovieListService {
     this.likes.push(this.movies[pos]);
   }
 
-  getNextTitle(oldTitle: Movie, id: number): Movie {    
-    if(this.movies.length == 0){
-      return {id: 0, title: "Emptiness"};
-
-    } else {
-      return this.getRandMovie();
-
+  getNextTitle(oldTitle: Movie, id: number): Movie {
+    try {
+      return this.unranked.pop();
+    } catch (error) {
+      return error;
     }
-
+    /*console.log("Unranked:") 
+    console.log(this.unranked) 
+    console.log("Regular:") 
+    console.log(this.movies) */
   }
 
   getMovies(): Movie[] {

@@ -23,7 +23,7 @@ export class CardComponent implements OnInit {
     //A winner has been selected
     this.movieService.addToLikes(this.title, this.cardID);
     this.movieService.notify(this.cardID, this.movie);
-    this.elo = this.movie.elo;
+    //this.elo = this.movie.elo;
   }
 
   updateMovie(): void {
@@ -34,7 +34,7 @@ export class CardComponent implements OnInit {
       this.movieService.acceptDefeat(this.cardID, this.movie);
       this.movie = this.movieService.getNextTitle(this.movie, this.cardID);
       this.title = this.movie.title;
-      this.elo = this.movie.elo;
+      //this.elo = this.movie.elo;
     }
 
     this.srcStr = "https://ae01.alicdn.com/kf/HTB1F8WgXcnrK1RkHFrdq6xCoFXa8/N-935-Princess-Mononoke-20th-Anniversary-Studio-Ghibli-Hot-Anime1-POSTER-L-W-Canvas-Art-Print.jpg";
