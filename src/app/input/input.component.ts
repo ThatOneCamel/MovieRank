@@ -1,6 +1,6 @@
+import { Movie } from './../movie';
 import { Component, OnInit, Input } from '@angular/core';
 import { MovieListService } from '../movie-list.service';
-import { Movie } from '../movie';
 import * as MovieManager from '../rating/movie-manager';
 import { MOVIES } from '../mock-movies';
 import * as retreive from '../rating/getRemoteMovies.js';
@@ -33,15 +33,21 @@ export class InputComponent implements OnInit {
 
   }
 
-  async test() {
-    let myVar = "https://letterboxd.com/markwilson12/list/halloween/"
+  async test(){
+    let myVar = "https://letterboxd.com/thatmovieguy21/list/tommys-movie-collection/"
     //let options = { params: new HttpParams({fromString: ""})}
-    let req = this.httpClient.post('https://boxflask-app.herokuapp.com/list', {
+    let req = await this.httpClient.post<[]>('https://boxflask-app.herokuapp.com/list', {
       "listurl" : myVar,
     });
+    
     req.subscribe(resp => {
       console.log(resp);
+      console.log(typeof(resp));
+      resp.forEach(name => {
+        this.list.push({title: name})
+      })
     });
+    
     console.log("TEST SUCCESS!");
   }
   onPaste(event: ClipboardEvent): void {
