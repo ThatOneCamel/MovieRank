@@ -11,6 +11,7 @@ import { RankViewComponent } from './rank-view/rank-view.component';
 import { MovieEditComponent } from './movie-edit/movie-edit.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     BrowserModule,
     AppRoutingModule,
     DragDropModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

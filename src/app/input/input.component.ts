@@ -4,6 +4,7 @@ import { Movie } from '../movie';
 import * as MovieManager from '../rating/movie-manager';
 import { MOVIES } from '../mock-movies';
 import * as retreive from '../rating/getRemoteMovies.js';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-input',
@@ -16,7 +17,7 @@ export class InputComponent implements OnInit {
   list: Movie[] = [];
   counter: number = 0;
 
-  constructor(private movieService: MovieListService) { }
+  constructor(private movieService: MovieListService, private httpClient: HttpClient) { }
 
   insert(val: string){
     this.list.push({id: this.counter, title: val});
@@ -32,8 +33,16 @@ export class InputComponent implements OnInit {
 
   }
 
-  test(): void {
-    console.log("TEST SUCCESS");
+  async test() {
+    let myVar = "https://letterboxd.com/markwilson12/list/halloween/"
+    //let options = { params: new HttpParams({fromString: ""})}
+    let req = this.httpClient.post('https://boxflask-app.herokuapp.com/list', {
+      "listurl" : myVar,
+    });
+    req.subscribe(resp => {
+      console.log(resp);
+    });
+    console.log("TEST SUCCESS!");
   }
   onPaste(event: ClipboardEvent): void {
     let pasted = event.clipboardData.getData('text').split(/\r?\n/);

@@ -1,4 +1,4 @@
-const axios = require("axios");
+/*const axios = require("axios");
 const cheerio = require("cheerio");
 let re = "alt=\"(.*?)\"";
 var list = [];
@@ -48,4 +48,4 @@ export const getList = async function() {
 }
 
 //Get list of movies
-getList();
+getList();*/
