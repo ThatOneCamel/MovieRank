@@ -38,6 +38,7 @@ export class MovieListService {
     this.movies.forEach(val => this.unranked.push(Object.assign({}, val)));
     this.len = this.movies.length;
     MovieManager.initElo(this.movies);
+    console.log("Finished setting up movies/unranked " + this.len);
 
   }
 
@@ -73,11 +74,11 @@ export class MovieListService {
       return this.movies[i];
     } else {
       console.log(row);
-      console.log("Returning movie: " + (this.len - (this.len * row) + i))
+      console.log("Returning movie: " + (this.len - (5 * row) + i))
       console.log("Should be: " + 5);
       console.log("Row was " + row);
       console.log("i = " + i);
-      return this.movies[this.len - (this.len * row) + i]
+      return this.movies[this.len - (5 * row) + i]
     }
   }
 

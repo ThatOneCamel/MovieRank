@@ -45,12 +45,13 @@ export class InputComponent implements OnInit {
       console.log(resp);
       console.log(typeof(resp));
       resp.forEach(name => {
-        this.list.push({title: name})
+        this.insert(name);
       })
     });
     
     console.log("TEST SUCCESS!");
   }
+  
   onPaste(event: ClipboardEvent): void {
     var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
     var clipboardText = event.clipboardData.getData('text');

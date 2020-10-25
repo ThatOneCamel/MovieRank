@@ -51,7 +51,7 @@ export class CardComponent implements OnInit {
       }
 
       console.log("GOT CALLED");
-      if(CardComponent.row >= this.movieService.len / 5){
+      if(CardComponent.row >= this.movieService.len / 5 - 1){
         CardComponent.index++;
       } else {
         CardComponent.row++;
@@ -104,7 +104,7 @@ export class CardComponent implements OnInit {
       this.resetRowAndCol();
     } else if (this.cardID == 1 && this.cardID == this.movieService.winner){
       this.movie = this.movieService.getGridTitle(CardComponent.row, CardComponent.index);
-      CardComponent.index ++;
+      CardComponent.index++;
 
     }
 
