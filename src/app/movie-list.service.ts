@@ -12,8 +12,12 @@ export class MovieListService {
   unranked: Movie[] =[];
   ranked: Movie[] = [];
   likes: Movie[] = [];
+  finishedRanking: boolean = false;
   winner: number;
   winningMovie: Movie;
+  len: number;
+
+  numOfCols: number = 5;
 
   @Output() emitter = new EventEmitter<any>();
 
@@ -32,6 +36,7 @@ export class MovieListService {
   setMovies(list: Movie[]): void {
     this.movies = list;
     this.movies.forEach(val => this.unranked.push(Object.assign({}, val)));
+    this.len = this.movies.length;
     MovieManager.initElo(this.movies);
 
   }
@@ -46,9 +51,14 @@ export class MovieListService {
     this.likes.push(this.movies[pos]);
   }
 
-  getNextTitle(oldTitle: Movie, id: number): Movie {
+  getNextTitle(): Movie {
     try {
-      return this.unranked.pop();
+      this.finishedRanking = false;
+      console.log("POPPED")
+      let x = this.unranked.pop();
+      console.log(x)
+      return x;
+      //return this.unranked.pop();
     } catch (error) {
       return error;
     }
@@ -56,6 +66,18 @@ export class MovieListService {
     console.log(this.unranked) 
     console.log("Regular:") 
     console.log(this.movies) */
+  }
+
+  getGridTitle(row: number, i: number): Movie {
+    if(row == 0){
+      return this.movies[i];
+    } else {
+      console.log("Returning movie: " + (this.len - (this.len * row) + i))
+      console.log("Should be: " + 5);
+      console.log("Row was " + row);
+      console.log("i = " + i);
+      return this.movies[this.len - (this.len * row) + i]
+    }
   }
 
   getMovies(): Movie[] {
