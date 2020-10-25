@@ -69,9 +69,10 @@ export class MovieListService {
   }
 
   getGridTitle(row: number, i: number): Movie {
-    if(row == 0){
+    if(row == this.len / 5){
       return this.movies[i];
     } else {
+      console.log(row);
       console.log("Returning movie: " + (this.len - (this.len * row) + i))
       console.log("Should be: " + 5);
       console.log("Row was " + row);

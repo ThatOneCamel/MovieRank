@@ -18,7 +18,7 @@ export class CardComponent implements OnInit {
   elo: number;
   listener: Subscription;
   static row: number = 1;
-  static index: number;
+  static index: number = 0;
   //Selector btn: Selec;
 
   onClick(): void {
@@ -54,7 +54,7 @@ export class CardComponent implements OnInit {
       if(CardComponent.row >= this.movieService.len / 5){
         CardComponent.index++;
       } else {
-        CardComponent.row ++;
+        CardComponent.row++;
       }
       /*if(CardComponent.index != 0){
         console.log("WOW")
@@ -120,7 +120,10 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movie = this.movieService.getRandMovie();
+    this.movie = this.movieService.getGridTitle(CardComponent.row, CardComponent.index);
+    if(this.cardID == 2){
+      this.movie = this.movieService.getNextTitle();
+    }
     this.title = this.movie.title;
     this.elo = this.movie.elo;
     this.resetRowAndCol();
