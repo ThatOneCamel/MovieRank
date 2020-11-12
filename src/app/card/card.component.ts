@@ -23,7 +23,7 @@ export class CardComponent implements OnInit {
 
   onClick(): void {
     //A winner has been selected
-    this.movieService.addToLikes(this.title, this.cardID);
+    //this.movieService.addToLikes(this.title, this.cardID);
     this.movieService.notify(this.cardID, this.movie);
     //this.elo = this.movie.elo;
   }
@@ -43,7 +43,13 @@ export class CardComponent implements OnInit {
       //Row is technically going up
 
       if(CardComponent.index >= 4){
+        console.log(this.movieService.movies);
+        console.log("BEFORE ^ ^ ^");
+        this.movieService.arraymove(this.movieService.unranked.length, this.movieService.len - (5 * CardComponent.row + CardComponent.index) - 1);
+        console.log("AFTER v v v ")
+        console.log(this.movieService.unranked);
         this.movie = this.movieService.getNextTitle();
+        this.title = this.movie.title;
         this.resetRowAndCol();
         console.log("Reached end of col");
         console.log("Row after " + CardComponent.row);
@@ -63,7 +69,8 @@ export class CardComponent implements OnInit {
 
       } else */
       if(this.movieService.finishedRanking == true){
-        this.movie = this.movieService.getNextTitle();
+        //this.movie = this.movieService.getNextTitle();
+        this.title = this.movie.title;
         this.resetRowAndCol();
         //Need to insert movie where it should go
         console.log("Ranking = Fin");
@@ -104,6 +111,7 @@ export class CardComponent implements OnInit {
       this.resetRowAndCol();
     } else if (this.cardID == 1 && this.cardID == this.movieService.winner){
       this.movie = this.movieService.getGridTitle(CardComponent.row, CardComponent.index);
+      this.title = this.movie.title;
       CardComponent.index++;
 
     }

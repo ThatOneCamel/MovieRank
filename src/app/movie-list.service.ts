@@ -3,6 +3,7 @@ import { Movie } from './movie';
 import { MOVIES } from './mock-movies';
 import * as MovieManager from './rating/movie-manager';
 import { getRatingDelta, getNewRating } from './rating/elo';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,7 @@ export class MovieListService {
       console.log("POPPED")
       let x = this.unranked.pop();
       console.log(x)
+      console.log("Len of unranked: " + this.unranked.length);
       return x;
       //return this.unranked.pop();
     } catch (error) {
@@ -67,6 +69,17 @@ export class MovieListService {
     console.log(this.unranked) 
     console.log("Regular:") 
     console.log(this.movies) */
+  }
+
+  arraymove(fromIndex: number, toIndex: number) {
+    var element = this.movies[fromIndex];
+    this.movies.splice(fromIndex, 1);
+    console.log("MOVED " + element.title);
+    console.log("Index was: " + fromIndex);
+    console.log("To " + toIndex);
+    this.movies.splice(toIndex, 0, element);
+    console.log(this.movies);
+
   }
 
   getGridTitle(row: number, i: number): Movie {
@@ -87,9 +100,9 @@ export class MovieListService {
   }
 
   acceptDefeat(id: number, loser: Movie){
-    MovieManager.adjustElo(this.winningMovie, loser);
+    //MovieManager.adjustElo(this.winningMovie, loser);
     console.log(this.movies);
-    MovieManager.sortByElo(this.movies);
+    //MovieManager.sortByElo(this.movies);
   }
 
   clear(){
