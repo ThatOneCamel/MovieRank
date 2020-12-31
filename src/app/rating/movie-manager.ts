@@ -9,6 +9,10 @@ export function getIndexOfTitle(movies: Movie[], title: string): number {
     return movies.map(m => { return m.title; }).indexOf(title);
 }
 
+export function getIndexByID(movies: Movie[], id: number): number {
+    return movies.map(m => { return m.id; }).indexOf(id);
+}
+
 export function getRandomTitle(movies: Movie[]): string {
     return movies[Math.floor(Math.random() * movies.length)].title;
 }

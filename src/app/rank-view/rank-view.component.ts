@@ -5,6 +5,8 @@ import { Movie } from '../movie';
 import { getIndexOfTitle } from '../rating/movie-manager';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { MOVIES, MOVIES2, noPosterImg } from '../mock-movies';
+import * as MovieManager from '../rating/movie-manager';
+
 
 @Component({
   selector: 'app-rank-view',
@@ -26,10 +28,16 @@ export class RankViewComponent implements OnInit {
       //router.navigate(['makelist']);
     }
     this.movies = this.movieService.getMovies();
+    this.displayList();
+    this.movies[2] = {id: 5, title: "Blahhh"}
 
     //this.movieService
 
 
+  }
+
+  displayList(): string {
+    return MovieManager.getMovieTitles(this.movieService.movies).join(' | ');
   }
 
   //items: Array<number> = Array.from({ length: 21 }, (v, k) => k + 1);

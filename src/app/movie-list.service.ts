@@ -4,6 +4,7 @@ import { MOVIES } from './mock-movies';
 import * as MovieManager from './rating/movie-manager';
 import { getRatingDelta, getNewRating } from './rating/elo';
 import { from } from 'rxjs';
+import { errorMonitor } from 'events';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,8 @@ export class MovieListService {
   winner: number;
   winningMovie: Movie;
   len: number;
+  poppedMovie: Movie;
+  gridTitle: Movie;
 
   numOfCols: number = 5;
 
@@ -38,7 +41,7 @@ export class MovieListService {
     this.movies = list;
     this.movies.forEach(val => this.unranked.push(Object.assign({}, val)));
     this.len = this.movies.length;
-    MovieManager.initElo(this.movies);
+    //MovieManager.initElo(this.movies);
     console.log("Finished setting up movies/unranked " + this.len);
 
   }
@@ -56,9 +59,9 @@ export class MovieListService {
   getNextTitle(): Movie {
     try {
       this.finishedRanking = false;
-      console.log("POPPED")
+      //console.log("POPPED");
       let x = this.unranked.pop();
-      console.log(x)
+      this.poppedMovie = x;
       console.log("Len of unranked: " + this.unranked.length);
       return x;
       //return this.unranked.pop();
@@ -69,6 +72,15 @@ export class MovieListService {
     console.log(this.unranked) 
     console.log("Regular:") 
     console.log(this.movies) */
+  }
+
+  getNextTitleNoMod(): Movie {
+    try{
+      return this.unranked[this.unranked.length - 1];
+    } catch (error){
+      return error;
+    }
+    
   }
 
   arraymove(fromIndex: number, toIndex: number) {
@@ -83,14 +95,20 @@ export class MovieListService {
   }
 
   getGridTitle(row: number, i: number): Movie {
+    console.log("row = " + row + " --- i = " + i)
     if(row == this.len / 5){
+      console.log("Returning grid title immediately [" + i + "]")
+      console.log(this.movies[i].title)
+      this.gridTitle = this.movies[i];
+      //console.log(this.movies)
       return this.movies[i];
     } else {
       console.log(row);
-      console.log("Returning movie: " + (this.len - (5 * row) + i))
-      console.log("Should be: " + 5);
-      console.log("Row was " + row);
-      console.log("i = " + i);
+      //console.log("Returning movie: " + (this.len - (5 * row) + i))
+      //console.log("Should be: " + 5);
+      //console.log("Row was " + row);
+      //console.log("i = " + i);
+      this.gridTitle = this.movies[this.len - (5 * row) + i];
       return this.movies[this.len - (5 * row) + i]
     }
   }
