@@ -35,6 +35,9 @@ export class InputComponent implements OnInit {
   }
 
   async getRemoteList(url: string){
+    url.replace(/\/$/, "");
+    console.log("Retreiving list from " + url);
+
     //let myVar = "https://letterboxd.com/thatmovieguy21/list/tommys-movie-collection/"
     //let options = { params: new HttpParams({fromString: ""})}
     let req = await this.httpClient.post<[]>(this.apiURL, {
@@ -59,7 +62,7 @@ export class InputComponent implements OnInit {
     console.log(urlRegex.test(clipboardText));
     console.log("ONPASTE CALLED")
 
-    if(urlRegex.test(event.clipboardData.getData('text')) && clipboardText.includes('letterboxd')){
+    if(urlRegex.test(event.clipboardData.getData('text')) && (clipboardText.includes('letterboxd') || clipboardText.includes('boxd.it')) ){
       console.log("Link detected.")
       //alert("Stay patient, your list is being created.")
       this.getRemoteList(clipboardText);

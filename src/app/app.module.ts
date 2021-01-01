@@ -12,6 +12,7 @@ import { MovieEditComponent } from './movie-edit/movie-edit.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpClientModule } from '@angular/common/http';
+import { ArrangeComponent } from './arrange/arrange.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     InputComponent,
     RankViewComponent,
-    MovieEditComponent
+    MovieEditComponent,
+    ArrangeComponent
   ],
   imports: [
     BrowserModule,

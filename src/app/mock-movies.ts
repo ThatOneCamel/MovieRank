@@ -38,7 +38,8 @@ export const MOVIES2: Movie[] = [
     { id: 16, title: "Baby Driver", poster: "./assets/posters/poster6.jpg" },
     { id: 17, title: "Pulp Fiction", poster: "./assets/posters/poster7.png" },
     { id: 18, title: "Alien", poster: "./assets/posters/poster8.jpg" },
-    { id: 19, title: "Shaun of the Dead", poster: "./assets/posters/poster9.jpg" },
+    { id: 19, title: "Shaun of the Dead", poster: "./assets/posters/poster9.jpg" }
+
 ];
 
 

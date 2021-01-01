@@ -5,6 +5,7 @@ import * as MovieManager from './rating/movie-manager';
 import { getRatingDelta, getNewRating } from './rating/elo';
 import { from } from 'rxjs';
 import { errorMonitor } from 'events';
+import { CardComponent } from './card/card.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,9 @@ export class MovieListService {
   len: number;
   poppedMovie: Movie;
   gridTitle: Movie;
+  card_a: CardComponent;
+  card_b: CardComponent;
+  lastBeat: Movie;
 
   numOfCols: number = 5;
 
@@ -29,7 +33,7 @@ export class MovieListService {
   notify(winner: number, movie: Movie): void {
     this.winner = winner;
     this.winningMovie = movie;
-    this.emitter.emit();
+    //this.emitter.emit();
   }
 
   //User can manually add a movie
@@ -40,9 +44,12 @@ export class MovieListService {
   setMovies(list: Movie[]): void {
     this.movies = list;
     this.movies.forEach(val => this.unranked.push(Object.assign({}, val)));
+    console.log(this.movies)
+    console.log(this.unranked)
+
     this.len = this.movies.length;
     //MovieManager.initElo(this.movies);
-    console.log("Finished setting up movies/unranked " + this.len);
+    //console.log("Finished setting up movies/unranked " + this.len);
 
   }
 
@@ -87,23 +94,25 @@ export class MovieListService {
     var element = this.movies[fromIndex];
     this.movies.splice(fromIndex, 1);
     console.log("MOVED " + element.title);
-    console.log("Index was: " + fromIndex);
-    console.log("To " + toIndex);
+    console.log("From: " + fromIndex);
+    console.log("To: " + toIndex);
     this.movies.splice(toIndex, 0, element);
     console.log(this.movies);
 
   }
 
   getGridTitle(row: number, i: number): Movie {
-    console.log("row = " + row + " --- i = " + i)
-    if(row == this.len / 5){
-      console.log("Returning grid title immediately [" + i + "]")
-      console.log(this.movies[i].title)
+    let MAX_ROW = Math.ceil(this.len / 5);
+    //console.log("row = " + row + " --- i = " + i)
+    if(row == MAX_ROW){
+      console.log(row + "   " + i);
+      //console.log("Returning grid title immediately [" + i + "]")
+      //console.log(this.movies[i].title)
       this.gridTitle = this.movies[i];
       //console.log(this.movies)
       return this.movies[i];
     } else {
-      console.log(row);
+      console.log(row + "   " + i);
       //console.log("Returning movie: " + (this.len - (5 * row) + i))
       //console.log("Should be: " + 5);
       //console.log("Row was " + row);
@@ -119,7 +128,7 @@ export class MovieListService {
 
   acceptDefeat(id: number, loser: Movie){
     //MovieManager.adjustElo(this.winningMovie, loser);
-    console.log(this.movies);
+    //console.log(this.movies);
     //MovieManager.sortByElo(this.movies);
   }
 

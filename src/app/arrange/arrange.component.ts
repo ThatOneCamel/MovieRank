@@ -1,47 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MovieListService } from '../movie-list.service';
+import { noPosterImg } from '../mock-movies';
 import { Movie } from '../movie';
+import { MovieListService } from '../movie-list.service';
 import { getIndexOfTitle } from '../rating/movie-manager';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { MOVIES, MOVIES2, noPosterImg } from '../mock-movies';
-import * as MovieManager from '../rating/movie-manager';
-
 
 @Component({
-  selector: 'app-rank-view',
-  templateUrl: './rank-view.component.html',
-  styleUrls: ['./rank-view.component.css']
+  selector: 'app-arrange',
+  templateUrl: './arrange.component.html',
+  styleUrls: ['./arrange.component.css']
 })
-export class RankViewComponent implements OnInit {
+export class ArrangeComponent implements OnInit {
 
   placeholderImg = noPosterImg;
-
-  //movies: Movie[] = MOVIES2;
   movies: Movie[] = [];
 
   constructor(private router: Router, private movieService: MovieListService) {
-    //If page is loaded and there aren't any movies to rank,  go back to makelist
-    if(this.movieService.movies.length < 1){
-      this.movieService.setMovies(MOVIES2); //CAN BE USED TO BYPASS REROUTE FOR TESTING
-      //alert('No movies were given, redirecting.');
-      //router.navigate(['makelist']);
-    }
     this.movies = this.movieService.getMovies();
-    this.displayList();
-    //this.movies[2] = {id: 5, title: "Blahhh"}
-
-    //this.movieService
-
-
   }
-
-  displayList(): string {
-    return MovieManager.getMovieTitles(this.movieService.movies).join(' | ');
-  }
-
-  //items: Array<number> = Array.from({ length: 21 }, (v, k) => k + 1);
-  // two dimensional table matrix representing view model
+  
   movieTable: Array<Movie[]>;
 
   // fix column width as defined in CSS (150px + 5px margin)
