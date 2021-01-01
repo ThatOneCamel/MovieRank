@@ -22,11 +22,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              {
-                "glob": "_redirects",
-                "input": "src",
-                "output": "/"
-              }
+              "_redirects"
             ],
             "styles": [
               "src/styles.css"
@@ -90,7 +86,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "_redirects"
             ],
             "styles": [
               "src/styles.css"
