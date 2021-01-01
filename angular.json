@@ -21,8 +21,7 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "_redirects"
+              "src/assets"
             ],
             "styles": [
               "src/styles.css"
@@ -118,8 +117,17 @@
               "devServerTarget": "movie-rank:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/movie-rank",
+            "netlifyToken": "57wUZwd0t38Pk31jletBQ9pYU_9r9jEdSvWEhWA1XPE",
+            "siteId": "22da7863-0e4b-4c2f-9b05-515fbd1f01fc"
+          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "movie-rank"
 }
