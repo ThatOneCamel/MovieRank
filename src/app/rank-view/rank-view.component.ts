@@ -23,9 +23,9 @@ export class RankViewComponent implements OnInit {
   constructor(private router: Router, private movieService: MovieListService) {
     //If page is loaded and there aren't any movies to rank,  go back to makelist
     if(this.movieService.movies.length < 1){
-      this.movieService.setMovies(MOVIES2); //CAN BE USED TO BYPASS REROUTE FOR TESTING
+      //this.movieService.setMovies(MOVIES2); //CAN BE USED TO BYPASS REROUTE FOR TESTING
       //alert('No movies were given, redirecting.');
-      //router.navigate(['makelist']);
+      router.navigate(['makelist']);
     }
     this.movies = this.movieService.getMovies();
     this.displayList();
@@ -52,7 +52,7 @@ export class RankViewComponent implements OnInit {
   getItemsTable(rowLayout: Element): Movie[][] {
     // calculate column size per row
     const { width } = rowLayout.getBoundingClientRect();
-    console.log("Width = " + width);
+    //console.log("Width = " + width);
     const columnSize = Math.round(width / this.boxWidth) - 1;
 
     // view has been resized? => update table with new column size
@@ -107,7 +107,7 @@ export class RankViewComponent implements OnInit {
     // re-initialize table - makes sure each row has same numbers of entries
     // example: [ [1,2], [3,4,5,6] ] => [ [1,2,3], [4,5,6] ]
     this.initTable();
-    console.log(this.movies);
+    //console.log(this.movies);
   }
 
   getMovieIndex(title: string): number{

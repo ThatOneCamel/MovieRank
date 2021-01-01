@@ -18,6 +18,9 @@ export class ArrangeComponent implements OnInit {
 
   constructor(private router: Router, private movieService: MovieListService) {
     this.movies = this.movieService.getMovies();
+    if (this.movies.length == 0){
+      router.navigate(['/makelist']);
+    }
   }
   
   movieTable: Array<Movie[]>;
@@ -85,7 +88,7 @@ export class ArrangeComponent implements OnInit {
     // re-initialize table - makes sure each row has same numbers of entries
     // example: [ [1,2], [3,4,5,6] ] => [ [1,2,3], [4,5,6] ]
     this.initTable();
-    console.log(this.movies);
+    //console.log(this.movies);
   }
 
   getMovieIndex(title: string): number{

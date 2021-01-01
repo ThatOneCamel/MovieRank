@@ -40,7 +40,7 @@ export function generateGrid(arr, n){
         for(j = 0; j < n; j++){
             if(!(arr === undefined || arr.length == 0)){
                 grid[i].push(arr.pop());
-                //console.log("Pushed to [" + i + "][" + j +"]")
+                ////console.log("Pushed to [" + i + "][" + j +"]")
             }
         }
     }//End For Loop
@@ -53,18 +53,18 @@ export function versus(list, movie, opponent, r){
     var answer = "";
 
     //Get user input
-    console.log(msg);
+    //console.log(msg);
     prompt('1 or 2?', function (input) {
         answer = input;
-        console.log(input);
+        //console.log(input);
         switch(answer){
             case 1:
                 r--;
-                console.log("Winner is: " + movie);
+                //console.log("Winner is: " + movie);
                 return versus(list, movie, list[r][0], r);
                 break;
             case 2:
-                console.log("Winner is: " + opponent);
+                //console.log("Winner is: " + opponent);
                 return opponent;
                 break;
             default:
@@ -81,13 +81,13 @@ export function rank(arr){
     //Assuming input is 2D array
     let rows = arr.length;
     let cols = arr[0].length;
-    console.log("Rows = " + arr.length);
-    console.log("Cols = " + arr[0].length);
+    //console.log("Rows = " + arr.length);
+    //console.log("Cols = " + arr[0].length);
 
     posRow = (rows - 1);
     posCol = (cols - 1);
     let movie = arr[posRow][posCol]
-    //console.log(movie);
+    ////console.log(movie);
     
     //Movie = movie we are currently ranking against the system
     var winner = "";
@@ -99,5 +99,5 @@ export function rank(arr){
 
 //shuffle(list);
 var myGrid = generateGrid(list, 5);
-console.log(myGrid);
+//console.log(myGrid);
 rank(myGrid);

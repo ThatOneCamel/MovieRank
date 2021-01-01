@@ -2,9 +2,10 @@ import { Movie } from './../movie';
 import { Component, OnInit, Input } from '@angular/core';
 import { MovieListService } from '../movie-list.service';
 import * as MovieManager from '../rating/movie-manager';
-import { MOVIES } from '../mock-movies';
+import { MOVIES, MOVIES2 } from '../mock-movies';
 import * as retreive from '../rating/getRemoteMovies.js';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-input',
@@ -36,7 +37,7 @@ export class InputComponent implements OnInit {
 
   async getRemoteList(url: string){
     url.replace(/\/$/, "");
-    console.log("Retreiving list from " + url);
+    //console.log("Retreiving list from " + url);
 
     //let myVar = "https://letterboxd.com/thatmovieguy21/list/tommys-movie-collection/"
     //let options = { params: new HttpParams({fromString: ""})}
@@ -45,25 +46,25 @@ export class InputComponent implements OnInit {
     });
     
     req.subscribe(resp => {
-      console.log(resp);
-      console.log(typeof(resp));
+      //console.log(resp);
+      //console.log(typeof(resp));
       resp.forEach(name => {
         this.insert(name);
       })
     });
     
-    console.log("TEST SUCCESS!");
+    //console.log("TEST SUCCESS!");
   }
   
   onPaste(event: ClipboardEvent): void {
     var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
     var clipboardText = event.clipboardData.getData('text');
 
-    console.log(urlRegex.test(clipboardText));
-    console.log("ONPASTE CALLED")
+    //console.log(urlRegex.test(clipboardText));
+    //console.log("ONPASTE CALLED")
 
     if(urlRegex.test(event.clipboardData.getData('text')) && (clipboardText.includes('letterboxd') || clipboardText.includes('boxd.it')) ){
-      console.log("Link detected.")
+      //console.log("Link detected.")
       //alert("Stay patient, your list is being created.")
       this.getRemoteList(clipboardText);
 
@@ -81,9 +82,9 @@ export class InputComponent implements OnInit {
   }
 
   parseRemoteList(): void {
-    console.log("CALLING PARSE REMOTE");
+    //console.log("CALLING PARSE REMOTE");
     let temp = retreive.getList();
-    console.log(temp);
+    //console.log(temp);
   }
 
   displayList(): string {
@@ -91,8 +92,8 @@ export class InputComponent implements OnInit {
   }
 
   passList(): void {
-    console.log("List contained:");
-    console.log(this.list);
+    //console.log("List contained:");
+    //console.log(this.list);
     this.movieService.setMovies(this.list);
   }
 
@@ -106,6 +107,10 @@ export class InputComponent implements OnInit {
 
   ngOnInit(): void {
     //this.parseRemoteList();
+  }
+
+  sampleList(): void {
+    this.movieService.setMovies(MOVIES2);
   }
 
 }

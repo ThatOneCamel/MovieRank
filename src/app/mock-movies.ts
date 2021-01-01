@@ -41,5 +41,3 @@ export const MOVIES2: Movie[] = [
     { id: 19, title: "Shaun of the Dead", poster: "./assets/posters/poster9.jpg" }
 
 ];
-
-

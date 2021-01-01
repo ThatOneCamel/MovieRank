@@ -21,7 +21,7 @@ export class SelectorBtnComponent implements OnInit {
 
   constructor() { }
   onCilck(movieChoice: number): void{
-    console.log("Movie number " + movieChoice + " was chosen")
+    //console.log("Movie number " + movieChoice + " was chosen")
   }
 
   ngOnInit(): void {

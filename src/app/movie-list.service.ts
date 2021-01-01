@@ -44,12 +44,12 @@ export class MovieListService {
   setMovies(list: Movie[]): void {
     this.movies = list;
     this.movies.forEach(val => this.unranked.push(Object.assign({}, val)));
-    console.log(this.movies)
-    console.log(this.unranked)
+    //console.log(this.movies)
+    //console.log(this.unranked)
 
     this.len = this.movies.length;
     //MovieManager.initElo(this.movies);
-    //console.log("Finished setting up movies/unranked " + this.len);
+    ////console.log("Finished setting up movies/unranked " + this.len);
 
   }
 
@@ -66,19 +66,19 @@ export class MovieListService {
   getNextTitle(): Movie {
     try {
       this.finishedRanking = false;
-      //console.log("POPPED");
+      ////console.log("POPPED");
       let x = this.unranked.pop();
       this.poppedMovie = x;
-      console.log("Len of unranked: " + this.unranked.length);
+      //console.log("Len of unranked: " + this.unranked.length);
       return x;
       //return this.unranked.pop();
     } catch (error) {
       return error;
     }
-    /*console.log("Unranked:") 
-    console.log(this.unranked) 
-    console.log("Regular:") 
-    console.log(this.movies) */
+    /*//console.log("Unranked:") 
+    //console.log(this.unranked) 
+    //console.log("Regular:") 
+    //console.log(this.movies) */
   }
 
   getNextTitleNoMod(): Movie {
@@ -93,30 +93,30 @@ export class MovieListService {
   arraymove(fromIndex: number, toIndex: number) {
     var element = this.movies[fromIndex];
     this.movies.splice(fromIndex, 1);
-    console.log("MOVED " + element.title);
-    console.log("From: " + fromIndex);
-    console.log("To: " + toIndex);
+    //console.log("MOVED " + element.title);
+    //console.log("From: " + fromIndex);
+    //console.log("To: " + toIndex);
     this.movies.splice(toIndex, 0, element);
-    console.log(this.movies);
+    //console.log(this.movies);
 
   }
 
   getGridTitle(row: number, i: number): Movie {
     let MAX_ROW = Math.ceil(this.len / 5);
-    //console.log("row = " + row + " --- i = " + i)
+    ////console.log("row = " + row + " --- i = " + i)
     if(row == MAX_ROW){
-      console.log(row + "   " + i);
-      //console.log("Returning grid title immediately [" + i + "]")
-      //console.log(this.movies[i].title)
+      //console.log(row + "   " + i);
+      ////console.log("Returning grid title immediately [" + i + "]")
+      ////console.log(this.movies[i].title)
       this.gridTitle = this.movies[i];
-      //console.log(this.movies)
+      ////console.log(this.movies)
       return this.movies[i];
     } else {
-      console.log(row + "   " + i);
-      //console.log("Returning movie: " + (this.len - (5 * row) + i))
-      //console.log("Should be: " + 5);
-      //console.log("Row was " + row);
-      //console.log("i = " + i);
+      //console.log(row + "   " + i);
+      ////console.log("Returning movie: " + (this.len - (5 * row) + i))
+      ////console.log("Should be: " + 5);
+      ////console.log("Row was " + row);
+      ////console.log("i = " + i);
       this.gridTitle = this.movies[this.len - (5 * row) + i];
       return this.movies[this.len - (5 * row) + i]
     }
@@ -128,7 +128,7 @@ export class MovieListService {
 
   acceptDefeat(id: number, loser: Movie){
     //MovieManager.adjustElo(this.winningMovie, loser);
-    //console.log(this.movies);
+    ////console.log(this.movies);
     //MovieManager.sortByElo(this.movies);
   }
 
