@@ -4,7 +4,6 @@ import { MOVIES } from './mock-movies';
 import * as MovieManager from './rating/movie-manager';
 import { getRatingDelta, getNewRating } from './rating/elo';
 import { from } from 'rxjs';
-import { errorMonitor } from 'events';
 import { CardComponent } from './card/card.component';
 
 @Injectable({
