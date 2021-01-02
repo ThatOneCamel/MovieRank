@@ -6,7 +6,7 @@ import { getIndexOfTitle } from '../rating/movie-manager';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { MOVIES, MOVIES2, noPosterImg } from '../mock-movies';
 import * as MovieManager from '../rating/movie-manager';
-
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-rank-view',
@@ -14,8 +14,20 @@ import * as MovieManager from '../rating/movie-manager';
   styleUrls: ['./rank-view.component.css']
 })
 export class RankViewComponent implements OnInit {
+  
 
   placeholderImg = noPosterImg;
+  
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if(event.key == 'ArrowRight'){
+      this.movieService.card_b.onClick();
+    } else if (event.key == 'ArrowLeft'){
+      this.movieService.card_a.onClick();
+    }
+    //console.log(event.key);
+  }
 
   //movies: Movie[] = MOVIES2;
   movies: Movie[] = [];
