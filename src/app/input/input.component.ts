@@ -18,12 +18,15 @@ export class InputComponent implements OnInit {
   apiURL: string = 'https://boxflask-app.herokuapp.com/list'
   list: Movie[] = [];
   counter: number = 0;
+  @Input() showBar = false;
 
   constructor(private movieService: MovieListService, private httpClient: HttpClient) { }
 
   insert(val: string){
     this.list.push({id: this.counter, title: val});
     this.counter++;
+    this.showBar = false;
+
   }
 
   onEnter(val: string): void {
@@ -36,6 +39,7 @@ export class InputComponent implements OnInit {
   }
 
   async getRemoteList(url: string){
+    this.showBar = true;
     url.replace(/\/$/, "");
     //console.log("Retreiving list from " + url);
 
@@ -44,7 +48,7 @@ export class InputComponent implements OnInit {
     let req = await this.httpClient.post<[]>(this.apiURL, {
       "listurl" : url,
     });
-    
+
     req.subscribe(resp => {
       //console.log(resp);
       //console.log(typeof(resp));
@@ -52,7 +56,6 @@ export class InputComponent implements OnInit {
         this.insert(name);
       })
     });
-    
     //console.log("TEST SUCCESS!");
   }
   

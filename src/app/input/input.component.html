@@ -9,6 +9,8 @@
         (paste)="onPaste($event)"
         (input)="item=field.value" >
     </div>
+    <mat-progress-bar *ngIf="showBar" mode="indeterminate" style="width: 500px; margin: auto; margin-top: 20px; margin-bottom: 30px;"></mat-progress-bar>
+
     <!-- <button id="TestBtn" style="width: 50px; height: 50px;" (click)="getRemoteList('https://letterboxd.com/thatonecamel/list/my-life-in-film/')"></button> -->
     <button *ngIf="list.length == 0" class="whiteBtn" style="height: 40px; margin-top: 20px;" (click)="sampleList()" routerLink="/rank">Try a Sample List</button>
     <p style="font-size: small;">You can also paste a list of movies from letterboxd into the field above</p>
