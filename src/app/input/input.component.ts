@@ -29,6 +29,12 @@ export class InputComponent implements OnInit {
 
   }
 
+  shuffle(){
+    this.list = this.list.map((a) => ({sort: Math.random(), value: a}))
+    .sort((a, b) => a.sort - b.sort)
+    .map((a) => a.value)
+  }
+
   onEnter(val: string): void {
     //Checking if the string only has whitespace/is empty
     if(val.replace(/\s/g, '').length){

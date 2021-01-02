@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ArrangeComponent } from './arrange/arrange.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     FlexLayoutModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
