@@ -30,9 +30,9 @@ export class MovieListService {
 
   //Sets winning movie and calls updateMovie() in Card-Component
   notify(winner: number, movie: Movie): void {
-    this.winner = winner;
-    this.winningMovie = movie;
-    //this.emitter.emit();
+    //this.winner = winner;
+    //this.winningMovie = movie;
+    this.emitter.emit();
   }
 
   //User can manually add a movie

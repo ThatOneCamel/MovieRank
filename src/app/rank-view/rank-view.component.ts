@@ -7,6 +7,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { MOVIES, MOVIES2, noPosterImg } from '../mock-movies';
 import * as MovieManager from '../rating/movie-manager';
 import { HostListener } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rank-view',
@@ -18,6 +19,8 @@ export class RankViewComponent implements OnInit {
 
   placeholderImg = noPosterImg;
   
+  @Input() value = 0;
+  listener: Subscription;
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -29,10 +32,16 @@ export class RankViewComponent implements OnInit {
     //console.log(event.key);
   }
 
+  updateProgressBar(): void {
+    let percentage = 100 - (this.movieService.unranked.length / this.movieService.len * 100)
+    this.value = percentage;
+  }
+
   //movies: Movie[] = MOVIES2;
   movies: Movie[] = [];
 
   constructor(private router: Router, private movieService: MovieListService) {
+    this.listener = movieService.emitter.subscribe( () => this.updateProgressBar());
     //If page is loaded and there aren't any movies to rank,  go back to makelist
     if(this.movieService.movies.length < 1){
       //this.movieService.setMovies(MOVIES2); //CAN BE USED TO BYPASS REROUTE FOR TESTING

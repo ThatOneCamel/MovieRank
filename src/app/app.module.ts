@@ -13,7 +13,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpClientModule } from '@angular/common/http';
 import { ArrangeComponent } from './arrange/arrange.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { ArrangeComponent } from './arrange/arrange.component';
     AppRoutingModule,
     DragDropModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
