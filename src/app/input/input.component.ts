@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class InputComponent implements OnInit {
 
   @Input() item: string = '';
-  apiURL: string = 'https://boxdscrape-production.up.railway.app/'
+  apiURL: string = 'http://boxdscrape-production.up.railway.app/list'
   list: Movie[] = [];
   counter: number = 0;
   @Input() showBar = false;
@@ -51,17 +51,16 @@ export class InputComponent implements OnInit {
 
     //let myVar = "https://letterboxd.com/thatmovieguy21/list/tommys-movie-collection/"
     //let options = { params: new HttpParams({fromString: ""})}
-    let req = await this.httpClient.post<[]>(this.apiURL, {
-      "listurl" : url,
-    });
 
-    req.subscribe(resp => {
-      //console.log(resp);
-      //console.log(typeof(resp));
-      resp.forEach(name => {
-        this.insert(name);
-      })
-    });
+    let req = await this.httpClient.post(
+      this.apiURL,
+      { listurl : url },
+      { observe: 'response', responseType: 'text'}).subscribe(resp => {
+        resp.body.split('\n').forEach(name => {
+          this.insert(name);
+        })
+
+      });
     //console.log("TEST SUCCESS!");
   }
   
