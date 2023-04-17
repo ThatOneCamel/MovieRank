@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class InputComponent implements OnInit {
 
   @Input() item: string = '';
-  apiURL: string = 'https://boxflask-app.herokuapp.com/list'
+  apiURL: string = 'https://boxdscrape-production.up.railway.app/'
   list: Movie[] = [];
   counter: number = 0;
   @Input() showBar = false;
